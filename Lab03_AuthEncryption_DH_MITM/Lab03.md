@@ -72,6 +72,15 @@ Build a simulated secure session using Diffie-Hellman + a stateful PRNG stream c
 - Full-screen screenshot of console output for Scenario A.
 - Full-screen screenshot of console output for Scenario B, clearly showing your original message and Mallory's modified version.
 
+## References & Further Reading
+
+Lab-wise, if you face any difficulties regarding the setup, tool usage, or markup help, please feel free to reach out to the TAs during office hours or via email. All assessments and deductions are done at the discretion of the TAs, but mostly based off of a preset rubric to ensure fairness and consistency — if you have any reservations with how your submission was graded, please raise them within three days of receiving your points.
+
+These explain the *concepts* behind Part 1's schemes and Part 2's key exchange — none of them walk through this lab's specific 9 schemes or tell you which ones are broken; that reasoning is yours to work out.
+
+1.  **Computerphile:** [Secret Key Exchange (Diffie-Hellman)](https://www.youtube.com/watch?v=NmM9HA2MQGI) — the mechanics behind Part 2's key exchange.
+2.  **Ref:** [Authenticated Encryption (Wikipedia)](https://en.wikipedia.org/wiki/Authenticated_encryption) — the general idea of combining confidentiality and integrity, background for reasoning about Part 1's schemes.
+
 ## AI Appendix & submission format
 
 Follow `../guidelines.txt` (screenshot markup, naming convention, AI-use disclosure) — not restated here.

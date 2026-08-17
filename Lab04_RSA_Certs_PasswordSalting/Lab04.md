@@ -60,6 +60,16 @@ Conceptual, referencing Lecture 7's Certificate Authorities content. Scenario: A
 
 *(Optional supplementary interactive practice: `../archive/Lab06_CertsPasswords/tools/CrackLab.html` and `HashCracker.html`.)*
 
+## References & Further Reading
+
+Lab-wise, if you face any difficulties regarding the setup, tool usage, or markup help, please feel free to reach out to the TAs during office hours or via email. All assessments and deductions are done at the discretion of the TAs, but mostly based off of a preset rubric to ensure fairness and consistency — if you have any reservations with how your submission was graded, please raise them within three days of receiving your points.
+
+These explain the underlying concepts across all four steps — none of them are CyberChef walkthroughs for this specific lab.
+
+1.  **Computerphile:** [Public Key Cryptography](https://www.youtube.com/watch?v=GSIDS_lvRv4) — the RSA/asymmetric-encryption ideas behind Steps 1-2.
+2.  **Ref:** [Chain of Trust (Wikipedia)](https://en.wikipedia.org/wiki/Chain_of_trust) — background for Step 3's certificate questions.
+3.  **OWASP:** [Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) — background for Step 4's salting/hashing questions.
+
 ## AI Appendix & submission format
 
 Follow `../guidelines.txt` — not restated here.

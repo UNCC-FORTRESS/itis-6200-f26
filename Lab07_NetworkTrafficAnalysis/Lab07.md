@@ -82,6 +82,13 @@
 
 **Analysis:** Q19 (2 pts) what is a socket, conceptually? Q20 (2 pts) why capture on Loopback rather than Wi-Fi/Ethernet for this script specifically? Q21 (2 pts) why do network apps need to define a `recv()` buffer size?
 
+## References & Further Reading
+
+Lab-wise, if you face any difficulties regarding the setup, tool usage, or markup help, please feel free to reach out to the TAs during office hours or via email. All assessments and deductions are done at the discretion of the TAs, but mostly based off of a preset rubric to ensure fairness and consistency — if you have any reservations with how your submission was graded, please raise them within three days of receiving your points.
+
+1.  **Wireshark:** [User's Guide — Getting Started](https://www.wireshark.org/docs/wsug_html_chunked/ChapterIntroduction.html) — general capture/filter mechanics, useful across every part of this lab.
+2.  **Ref:** [Address Resolution Protocol (Wikipedia)](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) — background for Part 1's ARP questions.
+
 ## AI Appendix & submission format
 
 Follow `../guidelines.txt` — not restated here.

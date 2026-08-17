@@ -65,3 +65,11 @@ $$ K_{session} = (Sum(Digits(ID)) + Length(N_{first})) \mod 10 $$
 1.  **Collision Check:** If you change **one letter** of your favorite color (e.g., "Blue" to "Glue"), how many characters in the MD5 output change? All of them, or just a few?
 2.  **Identity:** Why do we ask for your specific ID in the input? (Hint: Non-repudiation / Anti-plagiarism).
 
+## **References & Further Reading**
+
+Lab-wise, if you face any difficulties regarding the setup, tool usage, or markup help, please feel free to reach out to the TAs during office hours or via email. All assessments and deductions are done at the discretion of the TAs, but mostly based off of a preset rubric to ensure fairness and consistency — if you have any reservations with how your submission was graded, please raise them within three days of receiving your points.
+
+These resources explain the underlying idea (the avalanche effect) this lab asks you to observe — they won't tell you what your own hash output should look like, since that depends on your own SIP input.
+
+1.  **Ref:** [Avalanche Effect (Wikipedia)](https://en.wikipedia.org/wiki/Avalanche_effect) — why a one-character input change should scramble a cryptographic hash's output almost completely.
+

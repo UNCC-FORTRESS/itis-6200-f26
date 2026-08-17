@@ -56,6 +56,13 @@ Assume `buf` starts at stack address `0xbfffcd40` and has size `BUF_SIZE`.
 
 Show all arithmetic and conversions — partial credit is given for correct intermediate steps.
 
+## References & Further Reading
+
+Lab-wise, if you face any difficulties regarding the setup, tool usage, or markup help, please feel free to reach out to the TAs during office hours or via email. All assessments and deductions are done at the discretion of the TAs, but mostly based off of a preset rubric to ensure fairness and consistency — if you have any reservations with how your submission was graded, please raise them within three days of receiving your points.
+
+1.  **Paper:** [Smashing the Stack for Fun and Profit (Aleph One, Phrack #49)](https://phrack.org/issues/49/14.html) — the classic explanation of how stack layout and the RIP overwrite mechanism this lab explores actually works.
+2.  **Ref:** [Calling Convention (Wikipedia)](https://en.wikipedia.org/wiki/Calling_convention) — background for Q3's function-epilogue question.
+
 ## AI Appendix & submission format
 
 Follow `../guidelines.txt` — not restated here.

@@ -61,6 +61,13 @@ The **Bell-LaPadula (BLP)** model is a confidentiality-focused access-control mo
 
 *(This section is theory only. The hands-on CSRF/XSS exploitation happens in **Lab 06**'s DVWA exercise — see `../Lab06_DVWA_PenTest/`. Optional supplementary interactive tools for this section: `../archive/Lab08_WebIntro/tools/CookieShop.html` and `CSRF_Simulation.html`, built but never deployed under their own lab number.)*
 
+## References & Further Reading
+
+Lab-wise, if you face any difficulties regarding the setup, tool usage, or markup help, please feel free to reach out to the TAs during office hours or via email. All assessments and deductions are done at the discretion of the TAs, but mostly based off of a preset rubric to ensure fairness and consistency — if you have any reservations with how your submission was graded, please raise them within three days of receiving your points.
+
+1.  **Ref:** [Bell-LaPadula Model (Wikipedia)](https://en.wikipedia.org/wiki/Bell%E2%80%93LaPadula_model) — the formal no-read-up/no-write-down rules Step 1's 18 cases are testing.
+2.  **MDN:** [Same-origin Policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) — background for Step 2's origin-comparison questions.
+
 ## AI Appendix & submission format
 
 Follow `../guidelines.txt` — not restated here.
