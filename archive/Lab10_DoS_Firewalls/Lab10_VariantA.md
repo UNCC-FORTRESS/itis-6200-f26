@@ -38,7 +38,7 @@
 
 ### **Part 5: References & Further Reading**
 
-1.  **Explanation:** [What is a DDoS Attack? (Cloudflare)](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/)
+1.  **Explanation:** [Denial-of-service attack (Wikipedia)](https://en.wikipedia.org/wiki/Denial-of-service_attack)
 2.  **Visual:**
 ```merm
 graph TD

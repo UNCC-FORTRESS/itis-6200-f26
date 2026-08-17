@@ -42,7 +42,7 @@
 
 ### **Part 5: References & Further Reading**
 
-1.  **Case Study:** [DigiNotar Hack](https://slate.com/technology/2016/11/how-iran-hacked-a-dutch-company-and-compromised-the-internet.html)
+1.  **Case Study:** [DigiNotar Hack (Wikipedia)](https://en.wikipedia.org/wiki/DigiNotar)
     *   *Real-world consequence of a compromised Root CA.*
 2.  **Visual:**
 ```merm

@@ -41,7 +41,7 @@
 ### **Part 5: References & Further Reading**
 
 1.  **Video:** [Rainbow Tables (Computerphile)](https://www.youtube.com/watch?v=eG66uzPTz2s)
-2.  **Resource:** [Project RainbowCrack](https://project-rainbowcrack.com/)
-    *   *Tools for generating tables (Don't run on school PCs).*
+2.  **Resource:** [Rainbow Table (Wikipedia)](https://en.wikipedia.org/wiki/Rainbow_table)
+    *   *How precomputed lookup tables trade storage for cracking speed (concept only — don't run cracking tools on school PCs).*
 
 

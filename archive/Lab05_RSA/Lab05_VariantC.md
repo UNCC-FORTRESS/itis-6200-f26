@@ -44,7 +44,7 @@
 
 ### **Part 5: References & Further Reading**
 
-1.  **Paper:** [Homomorphic Encryption from RSA](https://math.stackexchange.com/questions/1182620/how-to-understand-the-proof-of-exy-ex-ey)
+1.  **Concept:** [Homomorphic Encryption (Wikipedia)](https://en.wikipedia.org/wiki/Homomorphic_encryption)
     *   *Explanation of the multiplicative property $E(x)E(y) = E(xy)$.*
 2.  **Defense:** [OAEP Padding (Wikipedia)](https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding)
     *   *How padding breaks the malleability.*

@@ -47,7 +47,7 @@
 
 1.  **Concept:** [Linear Congruential Generators](https://en.wikipedia.org/wiki/Linear_congruential_generator)
     *   *Understand the math: $X_{n+1} = (aX_n + c) \mod m$.*
-2.  **Risk:** [Cracking Random Number Generators - Part 1](https://research.kudelskisecurity.com/2017/07/21/the-definitive-guide-to-modulo-bias-and-rolling-your-own/)
+2.  **Risk:** [Modulo Bias (Wikipedia)](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias)
     *   *Why simple math isn't secure.*
 
 
