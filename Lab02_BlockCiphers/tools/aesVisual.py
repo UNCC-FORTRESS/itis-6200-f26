@@ -12,7 +12,7 @@ class AESVisualizerApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("ITIS 3200/6200/8200: The Horrors of IV Reuse")
+        self.title("ITIS 6200/8200: The Horrors of IV Reuse")
         self.geometry("1100x850")
 
         #STATEVARIABLESSSSS

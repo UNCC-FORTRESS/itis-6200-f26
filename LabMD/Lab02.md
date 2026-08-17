@@ -129,7 +129,7 @@ Since doing this manually on graph paper is tedious, use the following code to g
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ITIS 6200 Lab 2: Multi-Char Visual XOR</title>
+    <title>ITIS 6200/8200 Lab 2: Multi-Char Visual XOR</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: #f4f4f9; color: #333; }
         h1 { margin-bottom: 5px; }

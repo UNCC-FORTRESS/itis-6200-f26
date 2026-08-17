@@ -10,13 +10,13 @@
 
 **CRITICAL:** You must use the specific parameters below based on your own identity.
 
-1. **String A (Base):** `"I, [Your Full Name], am a student in ITIS 6200."`
+1. **String A (Base):** `"I, [Your Full Name], am a student in ITIS 6200/8200."`
     
-    - _Example:_ `I, Jian Xiang, am a student in ITIS 6200.`
+    - _Example:_ `I, Jian Xiang, am a student in ITIS 6200/8200.`
         
 2. **String B (Tampered):** Change the **punctuation** at the very end of String A from a period `.` to an exclamation mark `!`.
     
-    - _Example:_ `I, Jian Xiang, am a student in ITIS 6200!`
+    - _Example:_ `I, Jian Xiang, am a student in ITIS 6200/8200!`
         
 
 ---

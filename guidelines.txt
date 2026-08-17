@@ -1,5 +1,5 @@
 
-ITIS 6200: Lab Submission Guidelines & Academic Integrity Policy
+ITIS 6200/8200: Lab Submission Guidelines & Academic Integrity Policy
 1. Purpose of Labs
 The primary goal of these labs is to move beyond theory and allow you to experience the security principles discussed in class. These are not tests of your programming proficiency; they are interactions designed to visualize concepts like encryption, hashing, and randomness and all the other parts of the course beyond discussions.Because these labs are a significant component of your final grade, strict adherence to the following guidelines is required.
 2. Submission Format

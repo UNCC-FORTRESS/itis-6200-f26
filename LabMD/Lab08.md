@@ -1,4 +1,4 @@
-# **ITIS 6200: LAB 8 – NETWORK DEFENSE**
+# **ITIS 6200/8200: LAB 8 – NETWORK DEFENSE**
 
 **Topic:** HTTP Headers, Firewalls, & Packet Filtering.
 

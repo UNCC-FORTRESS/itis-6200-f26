@@ -35,7 +35,7 @@ We will generate a digital certificate to see how browsers react to unknown auth
     
     - **Common Name:** Enter your **SIP Common Name** (e.g., `801234567.com`).
         
-    - **Organization:** `ITIS 6200 Lab`.
+    - **Organization:** `ITIS 6200/8200 Lab`.
         
     - **Country:** `US`.
         

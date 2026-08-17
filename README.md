@@ -1,6 +1,6 @@
-# ITIS 6200/8200 & ITIS 3200 — Lab Starter Repo
+# ITIS 6200/8200 — Lab Starter Repo
 
-Starter code and lab handouts for "Principles of Security and Privacy" (UNC Charlotte, Dr. Jian Xiang). This README reflects the **Fall 2026 reorganization**: every `LabNN_*` folder at the top level now matches, in both number and content, what actually ran as that lab in Spring 2026 (verified directly against the real Canvas assignment files, not just the earlier tool designs built for each slot). See `ta-prep-fall2026/COURSE_MATERIALS_MAP.md` for the full investigation and `ta-prep-fall2026/LAB_TOOL_AUDIT.md` for outstanding risk items.
+Starter code and lab handouts for "Principle of Information Security and Privacy" (ITIS 6200 graduate / ITIS 8200 PhD combined section, UNC Charlotte, Dr. Jian Xiang). This is the graduate repo — the undergraduate ITIS 3200 section has its own repo at [UNCC-FORTRESS/itis-3200-f26](https://github.com/UNCC-FORTRESS/itis-3200-f26), forked from the same Fall 2026 starter material. This README reflects the **Fall 2026 reorganization**: every `LabNN_*` folder at the top level now matches, in both number and content, what actually ran as that lab in Spring 2026 (verified directly against the real Canvas assignment files, not just the earlier tool designs built for each slot). See `ta-prep-fall2026/COURSE_MATERIALS_MAP.md` for the full investigation and `ta-prep-fall2026/LAB_TOOL_AUDIT.md` for outstanding risk items.
 
 ## Canonical labs (Lab00-08 — what actually shipped)
 
@@ -30,10 +30,10 @@ Nine lab folders were built for a lab-number slot that ultimately ran different 
 
 - `guidelines.txt` / `LabGuidelines.docx` — submission format, screenshot/markup rules, AI-use policy, academic-integrity policy. Applies to every lab above; not restated per-lab.
 - `basicGradingRubric.md` — generic 100-pt rubric + late-penalty scale.
-- `memsafety.html` / `memsafety-3200.html` — the standalone tool Lab 08 uses.
+- `memsafety.html` — the standalone tool Lab 08 uses.
 - `LectureNotes/`, `LectureSchedule.pdf`, `Assignments/` (Homeworks 1-4) — lecture and homework material, unaffected by this reorganization.
 - `LABDOCS/`, `LabMD/` — two earlier generations of the lab sequence (CyberChef-only, pre-dating the custom-tool build-out). Superseded, kept for history — see `ta-prep-fall2026/COURSE_MATERIALS_MAP.md` §2.1.
 
-## GitHub Pages status — action needed before Fall 2026
+## GitHub Pages
 
-`Lab08`'s original assignment linked directly to `https://oatkrs.github.io/ITIS-6200/memsafety.html`, confirming this repo **was** live on GitHub Pages at some point. As of this reorganization, the repo returns 404 from the GitHub API and has no active Pages deployment — confirm the live URL and re-enable Pages before students need it.
+Live at `https://uncc-fortress.github.io/itis-6200-f26/` (e.g. `memsafety.html` is reachable at `https://uncc-fortress.github.io/itis-6200-f26/memsafety.html`). The Spring 2026 predecessor repo's assignment linked directly to `https://oatkrs.github.io/ITIS-6200/memsafety.html`, which is how we know this pattern is what Lab 08 actually depends on.

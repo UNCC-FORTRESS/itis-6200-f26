@@ -35,7 +35,7 @@ Tools Required: A Text Editor (Notepad/TextEdit) & A Web Browser.
     <!DOCTYPE html>
     <html>
     <body>
-        <h1>ITIS 6200 Search</h1>
+        <h1>ITIS 6200/8200 Search</h1>
         <p>You searched for: <span id="output"></span></p>
     
         <script>
