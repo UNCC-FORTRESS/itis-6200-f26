@@ -2,7 +2,7 @@
 
 **Ported from the real Spring 2026 Canvas assignment** (`original_docs/Lab08_Original.docx` — the fuller of two duplicate copies found in the Canvas export; it includes a Part 2 that a shorter duplicate elsewhere in Canvas Files was missing). This replaced the never-deployed `archive/Lab08_WebIntro/` design (cookies/CSRF content that actually shipped as part of **Lab 05**, with hands-on exploitation in **Lab 06**) — see `../archive/README.md`.
 
-**Tool:** this lab's original hyperlink pointed directly at **`https://oatkrs.github.io/ITIS-6200/memsafety.html`** — i.e., this repo's own `../memsafety.html`, served via GitHub Pages. That's hard confirmation GitHub Pages *was* the real, live student-facing distribution mechanism for at least this tool during Spring 2026. **The repo currently returns 404 from the GitHub API and has no active Pages deployment** (see `../ta-prep-fall2026/LAB_TOOL_AUDIT.md` item 1) — this needs to be fixed before Fall 2026 or this entire lab has no working tool. Locally, open `../memsafety.html` directly in a browser to use the tool without Pages.
+**Tool:** `memsafety.html` (repo root), live via GitHub Pages at `https://uncc-fortress.github.io/itis-6200-f26/memsafety.html`. The Spring 2026 predecessor repo's assignment linked directly at `https://oatkrs.github.io/ITIS-6200/memsafety.html`, which is how we know this Pages-hosting pattern is what this lab actually depends on — that old repo's Pages deployment is gone, but this one is live. Locally, you can also just open `memsafety.html` directly in a browser without Pages.
 
 ## Your Personalized Parameters
 

@@ -1,6 +1,6 @@
 # Archive — designs that don't match what actually shipped
 
-These 9 lab folders were built (mostly in one bulk commit, 2025-12-28) but are **not** what ran as the corresponding lab in Spring 2026, confirmed by directly reading the real Canvas assignment `.docx` files. They're kept, not deleted, because the tools themselves are well-built and several are already cited as optional starter material in `../ta-prep-fall2026/project-guidelines/`. See `../ta-prep-fall2026/COURSE_MATERIALS_MAP.md` for the full investigation.
+These 9 lab folders were built (mostly in one bulk commit, 2025-12-28) but are **not** what ran as the corresponding lab in Spring 2026, confirmed by directly reading the real Canvas assignment `.docx` files. They're kept, not deleted, because the tools themselves are well-built and several are already cited as optional starter material in the Fall 2026 project catalog (private `3200-6200-8200-grading-keys` repo, `ta-prep-fall2026/project-guidelines/`). See that same private repo's `ta-prep-fall2026/COURSE_MATERIALS_MAP.md` for the full investigation.
 
 | Folder | Why it's archived |
 |---|---|

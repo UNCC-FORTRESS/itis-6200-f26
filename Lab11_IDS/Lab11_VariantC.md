@@ -39,7 +39,6 @@
 ### **Part 5: References & Further Reading**
 
 1.  **Paper:** [Insertion, Evasion, and Denial of Service (Ptacek & Newsham)](https://insecure.org/stf/secnet_ids/secnet_ids.html)
-    *   *The seminal paper (1998) that proved signature IDS can be evaded.*
-2.  **Concept:** [Fragmentation Attacks](https://www.juniper.net/documentation/us/en/software/junos/application-identification/topics/concept/security-application-identification-fragmentation-evasion-understanding.html)
+    *   *The seminal paper (1998) that proved signature IDS can be evaded, including via packet fragmentation — see its evasion/insertion sections for the fragmentation-specific techniques.*
 
 
