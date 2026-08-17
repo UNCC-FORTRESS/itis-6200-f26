@@ -8,6 +8,7 @@ Naming Convention: Please name your file: [FirstName]_[LastName]_Lab[#].docx
 Example: Jian_ Xiang _Lab1.docx
 3. Mandatory Screenshot Standards
 To ensure authenticity, we enforce a strict "Full Desktop" screenshot policy. Snippets, cropped images, or "active window only" screenshots will be rejected.
+IMPORTANT: a missing required screenshot is not just a rejected item -- it caps the maximum score achievable on the entire assignment. See SCREENSHOT_PENALTY_POLICY.md for the exact policy before you submit.
 Windows Users: Screenshots must include the entire desktop AND the Taskbar (showing the clock and open applications).
 macOS Users: Screenshots must include the entire desktop AND the Menu Bar at the top of the screen (showing the clock and Apple menu).
 Linux Users: Screenshots must include the entire desktop AND the System Menu / Tool Tray.

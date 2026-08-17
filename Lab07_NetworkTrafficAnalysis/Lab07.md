@@ -4,7 +4,7 @@
 
 **Tools required:** Wireshark (https://www.wireshark.org/download.html), a terminal, Python 3.
 
-## Part 1: ARP Analysis on Your Own Network (13 points)
+## Part 1: ARP Analysis on Your Own Network (18 points)
 
 1. Start Wireshark on your active interface.
 2. Find your IP (`ifconfig` on macOS/Linux, `ipconfig` on Windows) and your default gateway.
@@ -15,7 +15,7 @@
 
 **Analysis:** Q1 (2 pts) what is ARP for, and why only within a local network? Q2 (2 pts) how can an on-path attacker abuse ARP to redirect a victim's traffic? Q3 (2 pts) what defenses mitigate ARP attacks, and how?
 
-## Part 2: Visualizing Packets in NetLab (6 points)
+## Part 2: Visualizing Packets in NetLab (12 points)
 
 1. Open https://netlab.thecybersecguru.com, wait for it to load.
 2. Top-right "Templates & Snapshots" icon → Starter Templates → Load Template under "Starter LAN" (a Router 2911, Switch 2960-24TT, PC-PT, Server-PT).
@@ -27,7 +27,7 @@
 
 **Analysis:** Q4 (2 pts) why did an ARP packet have to be sent before the ICMP ping? Q5 (2 pts) what did the switch do with the first ARP request — forward to just the destination, or flood to all connected devices? Q6 (2 pts) how does the visual simulator help you interpret raw Wireshark captures?
 
-## Part 3: TELNET Traffic Analysis (6 points)
+## Part 3: TELNET Traffic Analysis (12 points)
 
 1. Start a Wireshark capture on your active interface.
 2. `telnet telehack.com 23` (macOS: `brew install telnet` first if needed; Windows: enable the Telnet Client via "Turn Windows features on or off," or use PuTTY).
@@ -39,7 +39,7 @@
 
 **Analysis:** Q7 (2 pts) what's telehack's server IP? Q8 (2 pts) why can individual keystrokes appear as separate TELNET packets? Q9 (2 pts) why is TELNET insecure, and what does it leak?
 
-## Part 4: SSH Traffic Analysis (9 points)
+## Part 4: SSH Traffic Analysis (15 points)
 
 1. Fresh Wireshark capture.
 2. `ssh new@sdf.org`.
@@ -49,7 +49,7 @@
 
 **Analysis:** Q10 (2 pts) compare SSH vs TELNET packet contents — what's different? Q11 (2 pts) how does SSH defend against eavesdropping that TELNET can't? Q12 (2 pts) walk through the SSH negotiation/key-exchange steps and why they matter.
 
-## Part 5: TCP Connection Analysis (6 points)
+## Part 5: TCP Connection Analysis (12 points)
 
 1. Filter `tcp`.
 2. Pick one of your earlier TELNET or SSH sessions, find its opening `[SYN]`, `[SYN, ACK]`, `[ACK]` sequence.
@@ -59,7 +59,7 @@
 
 **Analysis:** Q13 (2 pts) purpose of SYN/ACK flags in connection setup. Q14 (2 pts) why sequence numbers instead of just sending raw data? Q15 (2 pts) what flag gracefully closes a TCP connection, and what did you observe when you typed `quit`/closed the terminal?
 
-## Part 6: Protocol Statistics and Network Evidence (6 points)
+## Part 6: Protocol Statistics and Network Evidence (12 points)
 
 1. Statistics → Protocol Hierarchy.
 2. Statistics → Conversations → IPv4 tab.
@@ -68,7 +68,7 @@
 
 **Analysis:** Q16 (2 pts) which protocol dominated your traffic, and does that match what you actually did? Q17 (2 pts) why is the Conversations view useful when investigating a breach? Q18 (2 pts) what would a large amount of "Unknown"/"Malformed" traffic suggest?
 
-## Part 7: Network Programming with Python Sockets (9 points)
+## Part 7: Network Programming with Python Sockets (15 points)
 
 `server.py` and `client.py` in this folder (recovered verbatim from the original assignment; `client.py`'s TODOs are intentionally left unimplemented — that's the student's task, not this port's).
 
