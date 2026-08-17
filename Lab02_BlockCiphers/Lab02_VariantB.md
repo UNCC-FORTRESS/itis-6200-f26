@@ -48,6 +48,6 @@
 
 1.  **Attack:** [ECB Cut and Paste](https://cryptopals.com/sets/2/challenges/13)
     *   *The inspiration for this lab (Cryptopals Challenge 13).*
-2.  **Article:** [Why ECB is bad](https://crypto.stackexchange.com/questions/20941/why-shouldnt-i-use-ecb-encryption)
+2.  **Article:** [The ECB Penguin — why ECB is bad](https://blog.filippo.io/the-ecb-penguin/)
 
 
