@@ -10,7 +10,7 @@ Starter code and lab handouts for "Principle of Information Security and Privacy
 |---|---|---|
 | `Lab00_Dummy/` | SIP (Student Identity Parameter) mechanic, submission-format drill | CyberChef |
 | `Lab01_Cryptography/` | Classical ciphers, AES avalanche effect | Custom HTML tools |
-| `Lab02_BlockCiphers/` | ECB/CBC/CTR modes, two-time-pad attack | [BlockCipherModes.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockCipherModes.html) + `aesVisual` |
+| `Lab02_BlockCiphers/` | ECB/CBC/CTR modes, two-time-pad attack | [BlockCipherModes.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockCipherModes.html) (required) + `aesVisual.py` (optional, source-only) |
 | `Lab03_AuthEncryption_DH_MITM/` | Authenticated-encryption scheme analysis, Diffie-Hellman + PRNG rollback, Mallory MITM programming assignment | CyberChef + Python (`Lab03DHProgram.py`) |
 | `Lab04_RSA_Certs_PasswordSalting/` | RSA encrypt/sign/verify, hybrid encryption, certificate chain-of-trust theory, password-salting timing simulation | CyberChef + a Colab notebook |
 | `Lab05_AccessControl_BLP/` | Bell-LaPadula access control, web origins/same-origin policy, cookies/CSRF theory | Python (`BLP.py`/`Cases.py`) |

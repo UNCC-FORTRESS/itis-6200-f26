@@ -100,6 +100,8 @@
 * **Q5:** Why is reusing a Stream Cipher key strictly forbidden?
 * **Q6:** If you encrypt 1000 messages with the same Key+Nonce, and the attacker discovers the plaintext of **one** message, what happens to the other 999?
 
+*(Optional supplementary desktop tool covering this same IV/key-reuse idea: [aesVisual.py](https://raw.githubusercontent.com/UNCC-FORTRESS/itis-6200-f26/main/Lab02_BlockCiphers/tools/aesVisual.py) — no pre-built executable is provided, run it directly with `pip install customtkinter cryptography` then `python aesVisual.py`. Not required for this lab.)*
+
 ---
 
 ## **Step 4: Deliverables**
