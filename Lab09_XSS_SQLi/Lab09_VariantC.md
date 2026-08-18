@@ -44,7 +44,7 @@
 
 ---
 
-![[![Pasted image 20251225125922.png](https://imgs.xkcd.com/comics/exploits_of_a_mom_2x.png)]]
+![XKCD 327: Exploits of a Mom](https://imgs.xkcd.com/comics/exploits_of_a_mom_2x.png)
 
 
 **School**: Hi, this is your son's school. We're having some computer trouble.
