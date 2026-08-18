@@ -22,11 +22,11 @@
             margin: 0;
             padding: 20px;
             background-color: #ffffff;
-            height: 100vh;
+            min-height: 100vh;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            overflow: hidden; 
+            overflow-y: auto;
         }
 
         h1 {
@@ -48,7 +48,7 @@
             width: 100%;
             max-width: 1800px; /* Allow wide screens */
             margin: 0 auto;
-            min-height: 0; /* Important for flex child scrolling */
+            min-height: 480px; /* Floor so stages don't collapse; body now scrolls instead of clipping at 100vh */
         }
 
         /* STAGES */
@@ -61,7 +61,7 @@
             padding: 15px;
             min-width: 300px;
             overflow: hidden; /* Internal scrolling handles content */
-            background-color: #f9f9f9; 
+            background-color: #f9f9f9;
         }
 
         .stage.alice { background-color: var(--alice-bg); border-color: var(--alice-border); }
@@ -107,10 +107,10 @@
         .btn-action:hover { background-color: #1565c0; }
 
         /* INPUTS & CONTROLS */
-        .control-group { 
-            margin-bottom: 12px; 
-            display: flex; 
-            flex-direction: column; 
+        .control-group {
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
             flex-shrink: 0; /* Prevent label crushing */
         }
 
@@ -118,16 +118,16 @@
             flex: 1; /* These sections grow to fill space */
             display: flex;
             flex-direction: column;
-            min-height: 100px; 
+            min-height: 100px;
             margin-bottom: 10px;
             overflow: hidden;
         }
-        
-        label { 
-            display: block; 
-            font-weight: 600; 
-            font-size: 0.8rem; 
-            margin-bottom: 4px; 
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
             color: #455a64;
         }
 
@@ -160,7 +160,7 @@
             border-radius: 4px;
             line-height: 1.4;
             word-break: break-all;
-            
+
             /* SCROLLING MAGIC */
             flex: 1; /* Grow to fill container */
             overflow-y: auto; /* Scroll when needed */
@@ -208,6 +208,37 @@
         .status-fail { background: #ffcdd2; color: #c62828; border: 1px solid #ef9a9a; }
         .status-warn { background: #fff9c4; color: #fbc02d; border: 1px solid #fff176; }
 
+        /* --- ECB IMAGE DEMO --- */
+        .ecb-demo {
+            max-width: 1800px;
+            width: 100%;
+            margin: 25px auto 0 auto;
+            border: 2px solid #ce93d8;
+            border-radius: 8px;
+            padding: 15px 20px 20px 20px;
+            background: #f3e5f5;
+            box-sizing: border-box;
+        }
+        .ecb-demo h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: #6a1b9a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ecb-demo p { font-size: 0.85rem; color: #444; margin: 6px 0; }
+        .ecb-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 10px 0; }
+        .ecb-canvases { display: flex; gap: 15px; flex-wrap: wrap; }
+        .ecb-canvas-box { text-align: center; }
+        .ecb-canvas-box label { text-align: center; }
+        .ecb-canvas-box canvas {
+            border: 1px solid #999;
+            background: repeating-conic-gradient(#ddd 0% 25%, #fff 0% 50%) 50% / 16px 16px;
+            image-rendering: pixelated;
+            max-width: 260px;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -215,12 +246,12 @@
 <h1>Lab 1: Encryption Visualization</h1>
 
 <div class="pipeline-container">
-    
+
     <!-- STAGE 1: ALICE -->
     <div class="stage alice">
         <h2>Alice (Sender)</h2>
         <div class="stage-scroller">
-            
+
             <div class="control-group">
                 <label>Mode</label>
                 <select id="selMode">
@@ -274,9 +305,11 @@
                 <label id="lblCipherHex">Hex Representation</label>
                 <textarea id="inpCipherHex" readonly rows="3"></textarea>
             </div>
-            
+
             <p style="font-size:0.8rem; color:#666; font-style:italic; margin:0;">
-                Click individual bits above to corrupt the data.
+                Click individual bits above to corrupt the data. Once you've pressed Encrypt/Decrypt once,
+                everything below stays live -- editing the key/message/mode, or clicking a bit, updates
+                automatically without needing to press the buttons again.
             </p>
 
         </div>
@@ -309,14 +342,53 @@
 
 </div>
 
+<!-- ECB PATTERN DEMO (IMAGES) -->
+<div class="ecb-demo">
+    <h2>Bonus: The "ECB Penguin" Effect</h2>
+    <p>
+        AES-ECB encrypts every 16-byte block independently with the same key, so <strong>identical plaintext
+        blocks always produce identical ciphertext blocks</strong>. On text that's invisible, but on an image
+        it means large flat-colored regions stay visually recognizable after "encryption" -- the classic demo
+        is encrypting a simple logo/line-art image and still being able to tell what it is.
+    </p>
+    <p>
+        Upload any image below. It's first shrunk to a tiny low-detail thumbnail, then blown back up with
+        <strong>nearest-neighbor</strong> scaling (no smoothing) -- this guarantees large blocks of identical
+        pixels, which is what actually makes the ECB pattern visible. Simple logos/line art with flat colors
+        show the effect best; a detailed photo will look noisier even after this trick.
+    </p>
+    <div class="ecb-controls">
+        <input type="file" id="inpImgFile" accept="image/*">
+        <button id="btnImgEncrypt" class="btn-action" style="padding:8px 12px; font-size:0.8rem;">Encrypt Image</button>
+        <span id="imgStatus" style="font-size:0.8rem; color:#666;"></span>
+    </div>
+    <div class="ecb-canvases">
+        <div class="ecb-canvas-box">
+            <label>Upscaled Original</label><br>
+            <canvas id="cvsOrig" width="1" height="1"></canvas>
+        </div>
+        <div class="ecb-canvas-box">
+            <label>AES-ECB Encrypted (pattern survives)</label><br>
+            <canvas id="cvsEcb" width="1" height="1"></canvas>
+        </div>
+        <div class="ecb-canvas-box">
+            <label>AES-CBC Encrypted (for comparison -- looks like noise)</label><br>
+            <canvas id="cvsCbc" width="1" height="1"></canvas>
+        </div>
+    </div>
+</div>
+
 <script>
     // --- GLOBALS ---
-    console.log("What are you doing here? Do the assignment!"); 
+    console.log("What are you doing here? Do the assignment!");
     let iv = new Uint8Array(16); // Fixed Zero IV for lab demo simplicity
     let rawCipher = null;
     let modCipher = null;
     let isEncrypted = false;
-    
+    let hasEncryptedOnce = false;
+    let hasDecryptedOnce = false;
+    let opSeq = 0; // guards against stale/out-of-order async results from rapid live edits
+
     // --- UI REFS ---
     const selMode = document.getElementById('selMode');
     const inpKey = document.getElementById('inpKey');
@@ -336,20 +408,46 @@
 
     // --- INIT ---
     const enc = new TextEncoder();
-    const dec = new TextDecoder();
+    const dec = new TextDecoder(); // fatal:false by default -> garbled bytes become U+FFFD instead of throwing
 
     renderBits(dispAliceBits, enc.encode(inpMsg.value));
 
-    inpMsg.addEventListener('input', () => {
-        renderBits(dispAliceBits, enc.encode(inpMsg.value));
-    });
-
-
     // --- FUNCTIONS ---
 
-    async function getKey(str) {
+    // Key must be imported bound to the SAME algorithm it will actually be used with --
+    // AES-CBC and AES-CTR keys are not interchangeable in WebCrypto even with identical raw bytes.
+    async function getKey(str, mode) {
         const hash = await crypto.subtle.digest('SHA-256', enc.encode(str));
-        return await crypto.subtle.importKey('raw', hash, {name: 'AES-CBC'}, false, ['encrypt', 'decrypt']);
+        const algoName = (mode === 'CTR') ? 'AES-CTR' : 'AES-CBC'; // ECB is simulated on top of AES-CBC
+        return await crypto.subtle.importKey('raw', hash, {name: algoName}, false, ['encrypt', 'decrypt']);
+    }
+
+    // True AES-ECB, built on the browser's AES-CBC primitive (WebCrypto has no native ECB, by design --
+    // ECB is intentionally left out because it's insecure for general use).
+    // Trick: AES-CBC of a single 16-byte block with a fresh all-zero IV computes exactly
+    // AES_encrypt(block XOR 0) = AES_encrypt(block), which *is* the ECB definition for that block.
+    // CBC always PKCS#7-pads, so a lone 16-byte input yields a 32-byte output (real block + a padding
+    // block); keeping only the first 16 bytes discards that trailing padding block and leaves the
+    // correct ECB result. Verified byte-for-byte against a real AES-ECB implementation before shipping this.
+    async function ecbEncryptBytes(ecbKey, bytes) {
+        const blockSize = 16;
+        const zeroIV = new Uint8Array(16);
+        const numBlocks = Math.max(1, Math.ceil(bytes.length / blockSize));
+        const padded = new Uint8Array(numBlocks * blockSize);
+        padded.set(bytes);
+
+        const blockPromises = [];
+        for (let i = 0; i < numBlocks; i++) {
+            const block = padded.slice(i * blockSize, (i + 1) * blockSize);
+            blockPromises.push(
+                crypto.subtle.encrypt({name: 'AES-CBC', iv: zeroIV}, ecbKey, block)
+                    .then(full => new Uint8Array(full).slice(0, blockSize))
+            );
+        }
+        const blocks = await Promise.all(blockPromises);
+        const out = new Uint8Array(numBlocks * blockSize);
+        blocks.forEach((b, i) => out.set(b, i * blockSize));
+        return out.slice(0, bytes.length);
     }
 
     function renderBits(container, bytes, isInteractive=false, originalBytes=null) {
@@ -360,30 +458,33 @@
         for(let i=0; i<bytes.length; i++) {
             const bVal = bytes[i];
             const oVal = originalBytes ? originalBytes[i] : bVal;
-            
+
             for(let bit=7; bit>=0; bit--) {
                 const bBit = (bVal >> bit) & 1;
                 const oBit = (oVal >> bit) & 1;
                 const changed = (bBit !== oBit);
-                
+
                 if(changed) diffs++;
-                
+
                 const span = document.createElement('span');
                 span.className = 'bit ' + (bBit ? 'one' : 'zero');
                 if(changed) span.classList.add('flipped');
-                
+
                 if(isInteractive) {
                     span.onclick = () => {
                         bytes[i] ^= (1 << bit);
                         updateChannelUI();
-                        // Clear Bob
-                        inpBobMsg.value = "";
-                        lblBobMsg.innerText = "Decrypted Message (M?)";
-                        lblBobMsg.classList.remove('highlight-label');
-                        boxStatus.style.display = 'none';
+                        if (hasDecryptedOnce) {
+                            performDecrypt();
+                        } else {
+                            inpBobMsg.value = "";
+                            lblBobMsg.innerText = "Decrypted Message (M?)";
+                            lblBobMsg.classList.remove('highlight-label');
+                            boxStatus.style.display = 'none';
+                        }
                     }
                 }
-                
+
                 span.innerText = bBit;
                 container.appendChild(span);
             }
@@ -395,7 +496,7 @@
     function updateChannelUI() {
         if(!modCipher) return;
         const diffs = renderBits(dispChannelBits, modCipher, true, rawCipher);
-        
+
         // Hex Update
         inpCipherHex.value = Array.from(modCipher).map(b => b.toString(16).padStart(2,'0')).join(' ');
 
@@ -413,67 +514,96 @@
         }
     }
 
-    // --- BUTTONS ---
+    // --- CORE ENCRYPT / DECRYPT (shared by button clicks AND live auto-updates) ---
 
-    document.getElementById('btnEncrypt').addEventListener('click', async () => {
+    async function performEncrypt() {
+        const seq = ++opSeq;
         try {
-            const key = await getKey(inpKey.value);
-            const data = enc.encode(inpMsg.value);
             const mode = selMode.value;
-            
+            const key = await getKey(inpKey.value, mode);
+            const data = enc.encode(inpMsg.value);
+
             let buf;
-            if(mode === 'CTR') {
+            if (mode === 'CTR') {
                 buf = await crypto.subtle.encrypt({name:'AES-CTR', counter: iv, length: 64}, key, data);
+            } else if (mode === 'ECB') {
+                buf = await ecbEncryptBytes(key, data);
             } else {
-                // CBC or ECB-simulated
                 buf = await crypto.subtle.encrypt({name:'AES-CBC', iv: iv}, key, data);
             }
-            
+            if (seq !== opSeq) return; // a newer edit already superseded this one
+
             rawCipher = new Uint8Array(buf);
             modCipher = new Uint8Array(rawCipher);
             isEncrypted = true;
-            
-            updateChannelUI();
-            
-            // Clean Bob
-            inpBobMsg.value = "(Ready to Decrypt)";
-            dispBobBits.innerHTML = "";
-            boxStatus.style.display = 'none';
-            lblBobMsg.innerText = "Decrypted Message (M)";
-            lblBobMsg.classList.remove('highlight-label');
 
+            updateChannelUI();
+
+            if (hasDecryptedOnce) {
+                await performDecrypt();
+            } else {
+                inpBobMsg.value = "(Ready to Decrypt)";
+                dispBobBits.innerHTML = "";
+                boxStatus.style.display = 'none';
+                lblBobMsg.innerText = "Decrypted Message (M)";
+                lblBobMsg.classList.remove('highlight-label');
+            }
         } catch(e) {
+            if (seq !== opSeq) return;
             alert("Encryption Error: " + e.message);
         }
-    });
+    }
 
-    document.getElementById('btnDecrypt').addEventListener('click', async () => {
+    async function performDecrypt() {
         if(!isEncrypted) return;
-        
+        const seq = ++opSeq;
+
+        const mode = selMode.value;
+
+        // ECB decrypt can't be built the same way ECB encrypt was: WebCrypto's AES-CBC decrypt
+        // always validates PKCS#7 padding on whatever you feed it and throws (with no partial
+        // result) if that padding looks wrong -- and a lone captured ECB block essentially never
+        // looks like valid padding. There's no raw/unpadded block-decrypt primitive exposed to work
+        // around that. Rather than fake a "padding error" that has nothing to do with your bit-flip,
+        // this panel is honest about the limitation -- ECB's actual lesson (pattern preservation) is
+        // the image demo below, not text round-tripping.
+        if (mode === 'ECB') {
+            dispBobBits.innerHTML = '';
+            inpBobMsg.value = "(ECB decrypt isn't shown here -- see the image demo below instead)";
+            lblBobMsg.innerText = "Decrypted Message (M)";
+            lblBobMsg.classList.remove('highlight-label');
+            boxStatus.className = 'status-msg status-warn';
+            boxStatus.innerHTML = "<b>ECB text decrypt isn't implemented in this panel.</b><br>" +
+                "WebCrypto only exposes padded AES-CBC decrypt, and a single captured ECB block doesn't " +
+                "carry valid padding -- there's no way to unwrap just one block without a raw AES " +
+                "primitive this tool doesn't have. ECB's actual point (identical blocks -> identical " +
+                "ciphertext) is what the image demo below shows.";
+            boxStatus.style.display = 'block';
+            return;
+        }
+
         try {
-            const key = await getKey(inpKey.value);
-            const mode = selMode.value;
+            const key = await getKey(inpKey.value, mode);
             let buf;
 
             try {
-                 if(mode === 'CTR') {
+                if (mode === 'CTR') {
                     buf = await crypto.subtle.decrypt({name:'AES-CTR', counter: iv, length: 64}, key, modCipher);
                 } else {
                     buf = await crypto.subtle.decrypt({name:'AES-CBC', iv: iv}, key, modCipher);
                 }
-                
+                if (seq !== opSeq) return;
+
                 // Success
                 const decBytes = new Uint8Array(buf);
                 renderBits(dispBobBits, decBytes);
-                
-                // Decode string (safe)
-                let text = "";
-                for(let i=0; i<decBytes.length; i++){
-                    let c = decBytes[i];
-                    text += (c>=32 && c<=126) ? String.fromCharCode(c) : "?";
-                }
+
+                // Proper UTF-8 decode: valid multi-byte sequences (accented names, etc.) come back
+                // correctly, and any bytes corrupted by a bit-flip become U+FFFD replacement chars
+                // instead of silently mismatching on non-ASCII input.
+                const text = dec.decode(decBytes);
                 inpBobMsg.value = text;
-                
+
                 // Check Equality
                 if(text === inpMsg.value) {
                     boxStatus.className = 'status-msg status-success';
@@ -489,26 +619,139 @@
                 boxStatus.style.display = 'block';
 
             } catch(decErr) {
+                if (seq !== opSeq) return;
                 // Padding Error
                 inpBobMsg.value = "[PADDING ERROR - GARBAGE DATA]";
                 dispBobBits.innerHTML = "<span style='color:red; font-style:italic;'>ERROR: PKCS#7 Padding Destroyed. The avalanche effect was so significant it corrupted the structural integrity of the block.</span>";
                 lblBobMsg.innerText = "Decrypted Message (M')";
                 lblBobMsg.classList.add('highlight-label');
-                
+
                 boxStatus.className = 'status-msg status-warn';
                 boxStatus.innerHTML = "<b>Decryption Failed (Padding)</b><br>The ciphertext is so scrambled that it no longer has valid padding.";
                 boxStatus.style.display = 'block';
             }
-            
+
         } catch(e) {
+            if (seq !== opSeq) return;
             alert("Error: " + e.message);
         }
+    }
+
+    // --- BUTTONS ---
+
+    document.getElementById('btnEncrypt').addEventListener('click', async () => {
+        hasEncryptedOnce = true;
+        await performEncrypt();
     });
 
-    document.getElementById('btnReset').addEventListener('click', () => {
+    document.getElementById('btnDecrypt').addEventListener('click', async () => {
+        hasDecryptedOnce = true;
+        await performDecrypt();
+    });
+
+    document.getElementById('btnReset').addEventListener('click', async () => {
         if(rawCipher) {
             modCipher = new Uint8Array(rawCipher);
             updateChannelUI();
+            if (hasDecryptedOnce) await performDecrypt();
+        }
+    });
+
+    // --- LIVE UPDATES (armed after the first Encrypt/Decrypt press) ---
+
+    inpMsg.addEventListener('input', () => {
+        renderBits(dispAliceBits, enc.encode(inpMsg.value));
+        if (hasEncryptedOnce) performEncrypt();
+    });
+    inpKey.addEventListener('input', () => {
+        if (hasEncryptedOnce) performEncrypt();
+    });
+    selMode.addEventListener('change', () => {
+        if (hasEncryptedOnce) performEncrypt();
+    });
+
+    // ==================================================================
+    // ECB PATTERN DEMO (IMAGES) -- separate from the text pipeline above
+    // ==================================================================
+
+    const inpImgFile = document.getElementById('inpImgFile');
+    const btnImgEncrypt = document.getElementById('btnImgEncrypt');
+    const imgStatus = document.getElementById('imgStatus');
+    const cvsOrig = document.getElementById('cvsOrig');
+    const cvsEcb = document.getElementById('cvsEcb');
+    const cvsCbc = document.getElementById('cvsCbc');
+
+    function loadImageFile(file) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = URL.createObjectURL(file);
+        });
+    }
+
+    // Shrink to a tiny low-detail thumbnail (smooth downscale -- this is what creates big flat-color
+    // regions even from a detailed photo), then blow it back up with nearest-neighbor (hard block
+    // edges, no smoothing) so each thumbnail pixel becomes a large block of many identical AES blocks.
+    function prepareForEcbDemo(img, thumbDim, targetDim) {
+        const thumb = document.createElement('canvas');
+        const scaleDown = Math.min(1, thumbDim / Math.max(img.naturalWidth, img.naturalHeight));
+        thumb.width = Math.max(1, Math.round(img.naturalWidth * scaleDown));
+        thumb.height = Math.max(1, Math.round(img.naturalHeight * scaleDown));
+        thumb.getContext('2d').drawImage(img, 0, 0, thumb.width, thumb.height);
+
+        const scaleUp = Math.max(1, Math.round(targetDim / Math.max(thumb.width, thumb.height)));
+        const out = document.createElement('canvas');
+        out.width = thumb.width * scaleUp;
+        out.height = thumb.height * scaleUp;
+        const octx = out.getContext('2d');
+        octx.imageSmoothingEnabled = false;
+        octx.drawImage(thumb, 0, 0, out.width, out.height);
+        return out;
+    }
+
+    function drawBytesAsImage(targetCanvas, width, height, rgba) {
+        targetCanvas.width = width;
+        targetCanvas.height = height;
+        const ctx = targetCanvas.getContext('2d');
+        const imgData = ctx.createImageData(width, height);
+        imgData.data.set(rgba);
+        // Force full opacity for display -- the alpha byte gets encrypted like any other byte,
+        // but rendering it as real (encrypted) transparency would just look broken, not "penguin-like".
+        for (let i = 3; i < imgData.data.length; i += 4) imgData.data[i] = 255;
+        ctx.putImageData(imgData, 0, 0);
+    }
+
+    btnImgEncrypt.addEventListener('click', async () => {
+        const file = inpImgFile.files[0];
+        if (!file) { alert("Choose an image first."); return; }
+
+        imgStatus.innerText = "Working...";
+        try {
+            const img = await loadImageFile(file);
+            const prepared = prepareForEcbDemo(img, 40, 280); // shrink to <=40px, then upscale to ~280px
+            cvsOrig.width = prepared.width;
+            cvsOrig.height = prepared.height;
+            cvsOrig.getContext('2d').drawImage(prepared, 0, 0);
+
+            const srcCtx = prepared.getContext('2d');
+            const srcData = srcCtx.getImageData(0, 0, prepared.width, prepared.height);
+            const rawBytes = new Uint8Array(srcData.data.buffer.slice(0));
+
+            const ecbKey = await getKey(inpKey.value, 'ECB');
+            const ecbBytes = await ecbEncryptBytes(ecbKey, rawBytes);
+            drawBytesAsImage(cvsEcb, prepared.width, prepared.height, ecbBytes);
+
+            // Same key, same zero IV, real chained AES-CBC -- for visual contrast only.
+            const cbcKey = await getKey(inpKey.value, 'CBC');
+            const cbcBuf = await crypto.subtle.encrypt({name:'AES-CBC', iv: new Uint8Array(16)}, cbcKey, rawBytes);
+            const cbcBytes = new Uint8Array(cbcBuf).slice(0, rawBytes.length);
+            drawBytesAsImage(cvsCbc, prepared.width, prepared.height, cbcBytes);
+
+            imgStatus.innerText = `Done (${prepared.width}x${prepared.height}, ${rawBytes.length} bytes).`;
+        } catch(e) {
+            imgStatus.innerText = "";
+            alert("Image demo error: " + e.message);
         }
     });
 

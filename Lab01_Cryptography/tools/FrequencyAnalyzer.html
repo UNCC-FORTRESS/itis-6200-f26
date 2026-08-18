@@ -126,6 +126,26 @@
             font-weight: bold;
             margin-bottom: 2px;
         }
+
+        .info-box {
+            background: #fff3e0;
+            border: 1px solid #ffcc80;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .info-box textarea {
+            height: 80px;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+
+        .small-btn {
+            padding: 6px 12px;
+            font-size: 0.85em;
+        }
     </style>
 </head>
 
@@ -133,10 +153,10 @@
     <div class="container">
         <h1>Crypto Analyzer Suite</h1>
         <div class="tabs">
-            <div class="tab active" onclick="setTab('caesar')">Variant A: Caesar</div>
-            <div class="tab" onclick="setTab('vigenere')">Variant B: Vigenère</div>
-            <div class="tab" onclick="setTab('sub')">Variant C: Substitution</div>
-            <div class="tab" onclick="setTab('stats')">Analysis (Frequency)</div>
+            <div class="tab active" data-tab="caesar">Variant A: Caesar</div>
+            <div class="tab" data-tab="vigenere">Variant B: Vigenère</div>
+            <div class="tab" data-tab="sub">Variant C: Substitution</div>
+            <div class="tab" data-tab="stats">Analysis (Frequency)</div>
         </div>
 
         <!-- CAESAR -->
@@ -170,7 +190,8 @@
             <label>Cipher Alphabet (Key):</label><br>
             <input type="text" id="subKey" value="QWERTYUIOPASDFGHJKLZXCVBNM"
                 style="width:100%; font-family:monospace; letter-spacing: 5px;"><br>
-            <small>Enter 26 letters representing mapping for A, B, C...</small><br><br>
+            <small>Enter 26 letters representing mapping for A, B, C... or generate one below.</small><br>
+            <button class="small-btn" onclick="generateSubKey()" style="margin-top:6px; background:#607d8b;">Generate Random Key</button><br><br>
 
             <textarea id="subInput" placeholder="Message"></textarea>
             <button onclick="doSub()">Encrypt/Decrypt</button>
@@ -180,6 +201,18 @@
         <!-- ANALYSIS -->
         <div id="stats" class="content">
             <h3>Frequency Analysis</h3>
+            <div class="info-box">
+                <strong>Why does this need a lot of text?</strong> Frequency analysis relies on the Law of Large
+                Numbers. A short message (like a ~26-character personalized SIP string) can easily have one
+                letter spike to 20-30% of the total just by chance -- that's noise, not a real signal. Only
+                once you have a few hundred letters does the count settle down toward English's real-world
+                distribution (E ~12.7%, T ~9.1%, A ~8.2%, ...). Want to see a clean example first? Copy the
+                sample paragraph below, encrypt <em>that</em> with one of the other tabs, and analyze the
+                result here -- then come back and try your own short message for comparison.
+                <textarea id="fillerText" readonly>In the field of information security, frequency analysis is one of the oldest techniques used to break classical ciphers. Every natural language has a distinctive statistical fingerprint: in English, the letter E appears far more often than the letter Z, and this pattern holds true across nearly any sufficiently long passage of ordinary text. A cryptanalyst studying an intercepted message can count how often each letter appears in the ciphertext and compare that distribution against the known frequencies of everyday English. When the sample of text is short, however, this technique becomes unreliable, because a handful of letters can dominate the count purely by chance, producing a distribution that looks nothing like typical English. Only when the sample grows sufficiently large does the observed frequency of each letter begin to settle down and resemble the expected curve, the same statistical principle that makes coin flips converge toward fifty percent only after many repeated trials rather than just a handful.</textarea>
+                <button class="small-btn" onclick="copyFillerText()">Copy Sample Text</button>
+                <span id="copyStatus" style="margin-left:8px; font-size:0.9em; color:#2e7d32;"></span>
+            </div>
             <textarea id="freqInput" placeholder="Paste Ciphertext here to analyze..."></textarea>
             <button onclick="analyze()">Analyze</button>
             <div id="freqChart" class="chart"></div>
@@ -187,12 +220,16 @@
     </div>
 
     <script>
-        function setTab(id) {
+        /* --- TABS --- */
+        document.querySelectorAll('.tab').forEach(tabEl => {
+            tabEl.addEventListener('click', () => setTab(tabEl.dataset.tab, tabEl));
+        });
+
+        function setTab(id, tabEl) {
             document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            // Find the tab element to set active class logic - simplified here
-            event.target.classList.add('active');
+            tabEl.classList.add('active');
         }
 
         /* --- CAESAR --- */
@@ -204,11 +241,16 @@
 
         function bruteCaesar() {
             const txt = document.getElementById('caesarInput').value;
-            let html = "";
+            const container = document.getElementById('caesarOutput');
+            container.innerHTML = "";
             for (let i = 1; i < 26; i++) {
-                html += `<div><strong>Shift ${i}:</strong> ${shiftStr(txt, -i)}</div>`;
+                const row = document.createElement('div');
+                const strong = document.createElement('strong');
+                strong.innerText = `Shift ${i}: `;
+                row.appendChild(strong);
+                row.appendChild(document.createTextNode(shiftStr(txt, -i))); // decodes = negative shift, same as before
+                container.appendChild(row);
             }
-            document.getElementById('caesarOutput').innerHTML = html; // Show Decryptions (Shift -i)
         }
 
         function shiftStr(str, amount) {
@@ -242,12 +284,27 @@
         }
 
         /* --- SUBSTITUTION --- */
+        function generateSubKey() {
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+            // Fisher-Yates shuffle -- guarantees a true permutation (no repeats, no missing letters)
+            for (let i = letters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [letters[i], letters[j]] = [letters[j], letters[i]];
+            }
+            document.getElementById('subKey').value = letters.join('');
+        }
+
         function doSub() {
             const txt = document.getElementById('subInput').value.toUpperCase();
             const key = document.getElementById('subKey').value.toUpperCase();
             const plain = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            if (key.length !== 26) return alert("Key must be 26 unique letters");
+            if (key.length !== 26) return alert("Key must be exactly 26 letters.");
+            const uniqueLetters = new Set(key.split(''));
+            const isValidPermutation = uniqueLetters.size === 26 && [...uniqueLetters].every(c => plain.includes(c));
+            if (!isValidPermutation) {
+                return alert("Key must be a scrambled version of A-Z with no repeated or missing letters (a true 1-to-1 mapping). Click 'Generate Random Key' for a guaranteed-valid key.");
+            }
 
             let res = "";
             for (let i = 0; i < txt.length; i++) {
@@ -260,6 +317,23 @@
         }
 
         /* --- ANALYSIS --- */
+        function copyFillerText() {
+            const text = document.getElementById('fillerText').value;
+            const status = document.getElementById('copyStatus');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    status.innerText = "Copied!";
+                    setTimeout(() => status.innerText = "", 2000);
+                }).catch(() => {
+                    document.getElementById('fillerText').select();
+                    status.innerText = "Auto-copy blocked -- text selected, use Ctrl+C / Cmd+C.";
+                });
+            } else {
+                document.getElementById('fillerText').select();
+                status.innerText = "Text selected -- use Ctrl+C / Cmd+C to copy.";
+            }
+        }
+
         function analyze() {
             const txt = document.getElementById('freqInput').value.toUpperCase();
             const counts = {};
@@ -280,9 +354,16 @@
                 const pct = total ? (count / total) * 100 : 0;
                 const bar = document.createElement('div');
                 bar.className = "bar";
-                bar.style.height = (pct * 3) + "px"; // Scale
+                // Cap height so one dominant letter in a short/skewed sample can't blow past the chart
+                bar.style.height = Math.min(pct * 3, 140) + "px";
                 bar.style.background = `hsl(${pct * 10}, 70%, 50%)`;
-                bar.innerText = l + "\n" + count;
+                bar.title = `${l}: ${count} (${pct.toFixed(1)}%)`;
+                const letterLine = document.createElement('div');
+                letterLine.innerText = l;
+                const countLine = document.createElement('div');
+                countLine.innerText = count;
+                bar.appendChild(letterLine);
+                bar.appendChild(countLine);
                 chart.appendChild(bar);
             });
         }
