@@ -1,7 +1,5 @@
 # Lab 04: RSA, Digital Signatures & Hybrid Encryption, Certificates, and Password Salting
 
-**Ported from the real Spring 2026 Canvas assignment** (`original_docs/Lab04_Original.docx`). This replaced the never-deployed `archive/Lab04_PRNG_DH/` design (which covered Diffie-Hellman — that content actually shipped as part of **Lab 03**, not Lab 04) and `archive/Lab05_RSA/` (RSA was drafted as a standalone tool-based lab but actually shipped here, via CyberChef). See `../archive/README.md`.
-
 Total: 100 points across 4 steps. Tool required throughout Steps 1-2: **[CyberChef](https://uncc-fortress.github.io/CyberChef/)** (backup: [gchq.github.io/CyberChef](https://gchq.github.io/CyberChef/)).
 
 ## Step 1: RSA Key Pairs and Encryption (24 points)
@@ -47,7 +45,7 @@ Conceptual, referencing Lecture 7's Certificate Authorities content. Scenario: A
 
 ## Step 4: The Exponential Wall — Password Salting Simulation (26 points)
 
-1. Open the provided Python/Colab notebook: **https://colab.research.google.com/drive/1C4E4JwCuJ_W6-4olBm0GH2RA_fGLITMd?usp=sharing** (recovered from the original docx's embedded hyperlink — confirm this link is still live before Fall 2026; if it has expired, the notebook will need to be re-hosted and this link updated).
+1. Open the provided Python/Colab notebook: **https://colab.research.google.com/drive/1C4E4JwCuJ_W6-4olBm0GH2RA_fGLITMd?usp=sharing**.
 2. Select "Open in Colab" if prompted, read through the code, then run it.
 3. Observe the brute-force time difference between the unsalted and salted password databases (the salted attack may take 1-3 minutes — that delay *is* the security benefit in action).
 

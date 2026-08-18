@@ -120,5 +120,6 @@
 
 ## **References**
 
+* **Lecture 3 Slides** (linked on Canvas)
 * [NIST SP 800-38A — Recommendation for Block Cipher Modes of Operation](https://csrc.nist.gov/pubs/sp/800/38/a/final)
 * [Block Cipher Modes Visualization (Wikipedia)](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)

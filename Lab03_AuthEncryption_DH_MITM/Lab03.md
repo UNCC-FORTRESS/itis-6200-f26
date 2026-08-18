@@ -1,7 +1,5 @@
 # Lab 03: Authenticated Encryption, Diffie-Hellman & PRNG Analysis, and the Stateful Interceptor
 
-**Ported from the real Spring 2026 Canvas assignment** (`original_docs/Lab03_Original.docx`, "Lab03 Revised (1).docx" — that original file is the authoritative source of record and includes screenshot examples and equation diagrams that don't survive this markdown port; consult it directly for anything ambiguous below). This replaced the never-deployed `archive/Lab03_HashesMACs/` and `archive/Lab03_05_MegaLab/` designs — see `../archive/README.md`.
-
 Total: 100 points (Part 1: 45, Part 2: 40, Part 3: 15).
 
 ## Part 1: Authenticated Encryption Analysis (45 points)
@@ -25,7 +23,7 @@ CyberChef operations you'll need: "AES Encrypt" / "AES Decrypt", "HMAC", "SHA2".
 - `H = HMAC(K2, C)` (separately) — HMAC computed over the ciphertext (encrypt-then-MAC), sent alongside `C`.
 - `C = AES-CBC(K1, Hash(M))` — an unkeyed hash of the plaintext, then encrypted (no real integrity key at all).
 
-**Important:** several of the 9 schemes are *intentionally broken by design* — some don't provide confidentiality and/or integrity, and some parameters are deliberately out of spec. This is a known, deliberate part of the lab (confirmed by the instructor in a Spring 2026 announcement, "Lab 03 doubts and update," after students initially read Scheme 4's missing key as a bug). Fall 2026 handout: **state this explicitly up front** rather than relying on a mid-semester clarification post — that announcement, plus a follow-up "Lab 03 update" with revised reference images, was needed last time specifically because the wording wasn't clear enough the first time. (The Spring 2026 reference images from that fix were in the Canvas Files area, not this repo — re-attach updated reference screenshots here if this scheme-ambiguity issue recurs.)
+**Important:** several of the 9 schemes are *intentionally broken by design* — some don't provide confidentiality and/or integrity, and some parameters (like Scheme 4's missing key) are deliberately out of spec. That's not a typo in the handout — figuring out which schemes are actually broken, and why, is the point of the exercise.
 
 **Deliverables per scheme (5 points each: 3 for screenshots, 1 each for confidentiality/integrity analysis):**
 - Full screenshot, Alice's side: input message highlighted yellow, output ciphertext boxed red.

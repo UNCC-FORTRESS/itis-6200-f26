@@ -1,7 +1,5 @@
 # Lab 05: Bell-LaPadula Access Control, Web Origins, and Cookies
 
-**Ported from the real Spring 2026 Canvas assignment** (`original_docs/Lab05_Original.docx`). This replaced the never-deployed `archive/Lab05_RSA/` design (RSA actually shipped as **Lab 04**) and `archive/Lab07_AccessControl/` (an RBAC/ABAC tool that was built but never deployed under any lab number — the real access-control lab used the Bell-LaPadula model instead, via the `BLP.py`/`Cases.py` files in this folder). See `../archive/README.md`.
-
 Total: 100 points across 3 steps.
 
 ## Step 1: BLP Access Control Visualizer (54 points)
