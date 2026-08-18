@@ -41,7 +41,7 @@ $$ K_{session} = (Sum(Digits(ID)) + Length(N_{first})) \mod 10 $$
 ### **Task B: The Entropy Injection**
 1.  Take your string from Task A.
 2.  Append your $C_{fav}$ to it.
-3.  Calculate the **MD5 Hash** of this final string using CyberChef or Python.
+3.  Calculate the **MD5 Hash** of this final string using [CyberChef](https://cyberchef.io) or Python.
     -   *CyberChef Recipe:* `MD5`
     -   *Input:* `801234567-Jian-0Blue` (If Blue is the color)
 

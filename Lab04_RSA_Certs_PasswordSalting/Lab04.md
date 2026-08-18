@@ -2,7 +2,7 @@
 
 **Ported from the real Spring 2026 Canvas assignment** (`original_docs/Lab04_Original.docx`). This replaced the never-deployed `archive/Lab04_PRNG_DH/` design (which covered Diffie-Hellman — that content actually shipped as part of **Lab 03**, not Lab 04) and `archive/Lab05_RSA/` (RSA was drafted as a standalone tool-based lab but actually shipped here, via CyberChef). See `../archive/README.md`.
 
-Total: 100 points across 4 steps. Tool required throughout Steps 1-2: **CyberChef** (cyberchef.io).
+Total: 100 points across 4 steps. Tool required throughout Steps 1-2: **[CyberChef](https://cyberchef.io)**.
 
 ## Step 1: RSA Key Pairs and Encryption (24 points)
 
