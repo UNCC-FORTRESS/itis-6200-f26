@@ -6,6 +6,8 @@
 
 **Tools Required:** [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html), [AvalancheAES.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/AvalancheAES.html)
 
+*(Cross-check option: [CyberChef](https://uncc-fortress.github.io/CyberChef/) (backup: [gchq.github.io/CyberChef](https://gchq.github.io/CyberChef/)) can verify your work at every step of this lab. Relevant operations: **ROT13** (Caesar -- set "Amount" to your shift), **Vigenère Encode**/**Vigenère Decode**, **Substitute** (paste your scrambled alphabet as the "Plaintext" and `ABCDEFGHIJKLMNOPQRSTUVWXYZ` as "Ciphertext" -- or vice versa, depending on direction), **AES Encrypt**/**AES Decrypt** (Mode: CBC or CTR, Key/IV as UTF8 or Hex to match), and **Frequency distribution** (a built-in equivalent of the Analysis tab's chart). It won't show the interactive bit-flip visualization Step 4 needs, but it's a solid way to double-check any cipher output by hand.)*
+
 ---
 
 ## **Step 1: The Roman Messenger (Caesar Cipher)**

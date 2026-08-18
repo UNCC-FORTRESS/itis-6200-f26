@@ -9,6 +9,8 @@
 
 **Tools Required:** [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) (Tab: Substitution).
 
+*(Cross-check option: [CyberChef](https://uncc-fortress.github.io/CyberChef/) (backup: [gchq.github.io/CyberChef](https://gchq.github.io/CyberChef/)) -- operation **Substitute**, using your scrambled alphabet.)*
+
 ---
 
 ## **Part 1: Student Identity Parameters (SIP)**
