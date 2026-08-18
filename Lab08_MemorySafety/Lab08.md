@@ -2,7 +2,7 @@
 
 **Ported from the real Spring 2026 Canvas assignment** (`original_docs/Lab08_Original.docx` — the fuller of two duplicate copies found in the Canvas export; it includes a Part 2 that a shorter duplicate elsewhere in Canvas Files was missing). This replaced the never-deployed `archive/Lab08_WebIntro/` design (cookies/CSRF content that actually shipped as part of **Lab 05**, with hands-on exploitation in **Lab 06**) — see `../archive/README.md`.
 
-**Tool:** `memsafety.html` (repo root), live via GitHub Pages at `https://uncc-fortress.github.io/itis-6200-f26/memsafety.html`. The Spring 2026 predecessor repo's assignment linked directly at `https://oatkrs.github.io/ITIS-6200/memsafety.html`, which is how we know this Pages-hosting pattern is what this lab actually depends on — that old repo's Pages deployment is gone, but this one is live. Locally, you can also just open `memsafety.html` directly in a browser without Pages.
+**Tool:** [Memory Safety Lab](https://uncc-fortress.github.io/itis-6200-f26/memsafety.html) (`memsafety.html` at repo root). The Spring 2026 predecessor repo's assignment linked directly at `https://oatkrs.github.io/ITIS-6200/memsafety.html`, which is how we know this Pages-hosting pattern is what this lab actually depends on — that old repo's Pages deployment is gone, but this one is live. Locally, you can also just open `memsafety.html` directly in a browser without Pages.
 
 ## Your Personalized Parameters
 
@@ -21,7 +21,7 @@ Derive these from your Student ID (digits `D1`-`D9`) and first name — your gra
 
 **Objective:** configure the Stack Overflow simulator with your parameters, trace how an overflow overwrites the RIP, and see what happens when shellcode must sit outside the buffer.
 
-1. Open the Memory Safety Lab tool, go to the "Stack Exploit" tab.
+1. Open the [Memory Safety Lab tool](https://uncc-fortress.github.io/itis-6200-f26/memsafety.html), go to the "Stack Exploit" tab.
 2. Click "Exploit Payload" mode. Set the Buffer slider to `BUF_SIZE`, Shellcode slider to `SHELL_SIZE`, Pad char field to `PAD_CHAR`.
 3. Select "At buf start" placement. Step through Steps 0-5, watching which memory cells change and where ESP/EBP/EIP point at each stage.
 4. Reset, switch to "Above RIP" placement, set shellcode size to `BUF_SIZE + 8` (won't fit in the buffer). Step through again.

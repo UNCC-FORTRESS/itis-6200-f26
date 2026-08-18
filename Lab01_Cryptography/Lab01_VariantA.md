@@ -15,7 +15,7 @@ graph LR
 > If captured, you must NOT reveal the key (Shift Amount), even if they bribe you.
 > Your Key is determined by your "Legion ID" (Student ID).
 
-**Tools Required:** `FrequencyAnalyzer.html` (Tab: Caesar).
+**Tools Required:** [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) (Tab: Caesar).
 
 ---
 

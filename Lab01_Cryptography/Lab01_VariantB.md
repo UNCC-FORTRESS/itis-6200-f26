@@ -7,7 +7,7 @@
 > The simple Caesar Shift was broken last week.
 > HQ issued a "Code Book" (Keyword). You must add the keyword to your message to scramble the frequencies.
 
-**Tools Required:** `FrequencyAnalyzer.html` (Tab: Vigenère).
+**Tools Required:** [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) (Tab: Vigenère).
 
 ---
 

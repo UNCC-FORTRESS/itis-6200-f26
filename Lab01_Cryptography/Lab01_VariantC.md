@@ -7,7 +7,7 @@
 > He didn't just shift the alphabet; he mixed it up completely. `A` -> `Q`, `B` -> `F`, etc.
 > This creates a massive number of possibilities.
 
-**Tools Required:** `FrequencyAnalyzer.html` (Tab: Substitution).
+**Tools Required:** [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) (Tab: Substitution).
 
 ---
 

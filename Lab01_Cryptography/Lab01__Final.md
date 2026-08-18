@@ -4,7 +4,7 @@
 
 **Goal:** Explore historic encryption tools, understand their weaknesses, and reflect on real-world security principles.
 
-**Tools Required:** `FrequencyAnalyzer.html`, `tools/AvalancheAES.html`
+**Tools Required:** [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html), [AvalancheAES.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/AvalancheAES.html)
 
 ---
 
@@ -25,7 +25,7 @@ graph LR
 2.  **Key (Shift):** Last Digit of your Student ID (If 0, use 10).
 
 ### **1.2 The Encryption**
-1.  Open `FrequencyAnalyzer.html` -> Tab **"Caesar"**.
+1.  Open [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) -> Tab **"Caesar"**.
 2.  Enter your **Plaintext** and **Shift**.
 3.  Record the Ciphertext.
 
@@ -49,7 +49,7 @@ graph TD
 2.  **Keyword:** Your **First Name**.
 
 ### **2.2 The Encryption**
-1.  Open `FrequencyAnalyzer.html` -> Tab **"Vigenère"**.
+1.  Open [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) -> Tab **"Vigenère"**.
 2.  Enter **Plaintext** and **Keyword**.
 3.  Record the Ciphertext.
 
@@ -65,7 +65,7 @@ graph TD
 2.  **Key (Alphabet):** A scrambled alphabet starting with your initials. (e.g., `AB...`).
 
 ### **3.2 The Encryption**
-1.  Open `FrequencyAnalyzer.html` -> Tab **"Substitution"**.
+1.  Open [FrequencyAnalyzer.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/FrequencyAnalyzer.html) -> Tab **"Substitution"**.
 2.  Enter **Plaintext**.
 3.  Generate a Random Key (or type one).
 4.  Record the Ciphertext.
@@ -84,7 +84,7 @@ graph TD
 2.  **Key:** `[YourStudentID]Secret`
 
 ### **4.2 The Experiment**
-1.  Open `tools/AvalancheAES.html`.
+1.  Open [AvalancheAES.html](https://uncc-fortress.github.io/itis-6200-f26/Lab01_Cryptography/tools/AvalancheAES.html).
 2.  Select **Mode: AES-CBC**.
 3.  Enter your **Key** and **Plaintext**. Click **Encrypt**.
 4.  In the **Insecure Channel** (middle), **click on ONE single bit** to flip it (red).

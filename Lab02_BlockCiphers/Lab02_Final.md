@@ -4,7 +4,7 @@
 
 **Goal:** Understand how different "Modes of Operation" using the same underlying cipher (e.g., AES) can result in vastly different security properties.
 
-**Tools Required:** `tools/BlockCipherModes.html`
+**Tools Required:** [BlockCipherModes.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockCipherModes.html)
 
 ---
 
@@ -15,7 +15,7 @@
 
 ### **1.1 The Experiment**
 
-1. Open `tools/BlockCipherModes.html` (Tab 1: Visual Patterns).
+1. Open [BlockCipherModes.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockCipherModes.html) (Tab 1: Visual Patterns).
 2. **Upload an Image** (Ideally one with large patches of single colors, like a logo or cartoon).
 3. Select **Mode: ECB** and click **Encrypt**.
 4. Observe the result. Can you still "see" the image?

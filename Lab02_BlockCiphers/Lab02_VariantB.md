@@ -8,7 +8,7 @@
 > You want to create a valid cookie for: `user=[Name];role=admin`.
 > Since ECB encrypts blocks independently, you can "Cut" the encrypted `admin` block from one cookie and "Paste" it into yours.
 
-**Tools Required:** `BlockRefinery.html` (Tab: Forge).
+**Tools Required:** [BlockRefinery.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockRefinery.html) (Tab: Forge).
 
 ---
 

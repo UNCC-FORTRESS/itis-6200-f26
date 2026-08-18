@@ -59,7 +59,7 @@ The **Bell-LaPadula (BLP)** model is a confidentiality-focused access-control mo
 - Q11 (6 pts): an engineer proposes defending against CSRF by strictly validating the `Referer` header and dropping requests where it's missing or mismatched. What breaks with this approach, and why is `SameSite=Strict` architecturally more robust?
 - Q12 (5 pts): an attacker finds a way to execute their own JavaScript in a banking site's victim's browser, but can't steal the session token directly. Based on standard cookie security attributes, explain why the direct theft failed, and what alternative attack the JavaScript could still perform.
 
-*(This section is theory only. The hands-on CSRF/XSS exploitation happens in **Lab 06**'s DVWA exercise — see `../Lab06_DVWA_PenTest/`. Optional supplementary interactive tools for this section: `../archive/Lab08_WebIntro/tools/CookieShop.html` and `CSRF_Simulation.html`, built but never deployed under their own lab number.)*
+*(This section is theory only. The hands-on CSRF/XSS exploitation happens in **Lab 06**'s DVWA exercise — see `../Lab06_DVWA_PenTest/`. Optional supplementary interactive tools for this section: [CookieShop.html](https://uncc-fortress.github.io/itis-6200-f26/archive/Lab08_WebIntro/tools/CookieShop.html) and [CSRF_Simulation.html](https://uncc-fortress.github.io/itis-6200-f26/archive/Lab08_WebIntro/tools/CSRF_Simulation.html), built but never deployed under their own lab number.)*
 
 ## References & Further Reading
 

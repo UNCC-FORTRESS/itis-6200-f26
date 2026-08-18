@@ -6,7 +6,7 @@
 > You are communicating with a submarine. The channel is noisy (bit flips happen).
 > You need to know: If ONE bit gets corrupted in the ciphertext, how much of the message is destroyed upon decryption?
 
-**Tools Required:** `BlockRefinery.html` (Tab: Error Prop).
+**Tools Required:** [BlockRefinery.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockRefinery.html) (Tab: Error Prop).
 
 ---
 

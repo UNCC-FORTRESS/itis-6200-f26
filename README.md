@@ -10,13 +10,13 @@ Starter code and lab handouts for "Principle of Information Security and Privacy
 |---|---|---|
 | `Lab00_Dummy/` | SIP (Student Identity Parameter) mechanic, submission-format drill | CyberChef |
 | `Lab01_Cryptography/` | Classical ciphers, AES avalanche effect | Custom HTML tools |
-| `Lab02_BlockCiphers/` | ECB/CBC/CTR modes, two-time-pad attack | `BlockCipherModes.html` + `aesVisual` |
+| `Lab02_BlockCiphers/` | ECB/CBC/CTR modes, two-time-pad attack | [BlockCipherModes.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockCipherModes.html) + `aesVisual` |
 | `Lab03_AuthEncryption_DH_MITM/` | Authenticated-encryption scheme analysis, Diffie-Hellman + PRNG rollback, Mallory MITM programming assignment | CyberChef + Python (`Lab03DHProgram.py`) |
 | `Lab04_RSA_Certs_PasswordSalting/` | RSA encrypt/sign/verify, hybrid encryption, certificate chain-of-trust theory, password-salting timing simulation | CyberChef + a Colab notebook |
 | `Lab05_AccessControl_BLP/` | Bell-LaPadula access control, web origins/same-origin policy, cookies/CSRF theory | Python (`BLP.py`/`Cases.py`) |
 | `Lab06_DVWA_PenTest/` | Hands-on CSRF, SQL injection, reflected + stored XSS exploitation | DVWA in a VM |
 | `Lab07_NetworkTrafficAnalysis/` | ARP, TELNET vs. SSH, TCP handshake, protocol statistics, Python sockets | Wireshark + NetLab (external, see below) + `server.py`/`client.py` |
-| `Lab08_MemorySafety/` | Buffer overflow, shellcode placement, exploit construction, mitigations | `memsafety.html` (repo root) |
+| `Lab08_MemorySafety/` | Buffer overflow, shellcode placement, exploit construction, mitigations | [memsafety.html](https://uncc-fortress.github.io/itis-6200-f26/memsafety.html) |
 
 Each lab folder now includes a clean `LabNN.md` (this port), an `original_docs/` copy of the real source `.docx` (equation diagrams and reference screenshots don't survive markdown conversion — treat the original as authoritative for anything ambiguous in the port), and a `LabNN_Rubric.md` — the full point breakdown for every question/section/subpart, published openly so you know exactly what you're being graded on. `LabNN_Rubric.md` intentionally does not include answers; that's kept separately by the teaching team.
 

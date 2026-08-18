@@ -7,7 +7,7 @@
 > If you use ECB mode, the thief can still see the *shape* of the painting.
 > You must demonstrate this weakness.
 
-**Tools Required:** `BlockRefinery.html` (Tab: Visual).
+**Tools Required:** [BlockRefinery.html](https://uncc-fortress.github.io/itis-6200-f26/Lab02_BlockCiphers/tools/BlockRefinery.html) (Tab: Visual).
 
 ---
 

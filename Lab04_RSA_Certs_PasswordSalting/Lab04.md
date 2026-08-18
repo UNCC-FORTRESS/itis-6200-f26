@@ -43,7 +43,7 @@ Conceptual, referencing Lecture 7's Certificate Authorities content. Scenario: A
 - Q8 (7 pts): if Bob's intermediate certificate was signed using an algorithm now considered broken, does Alice still trust Mallory? Why/why not?
 - Q9 (6 pts): "You cannot gain trust if you trust nothing — you need a root of trust." In a real browser, who are the trust anchors, and how do they get onto your computer? What happens if you manually delete all Root CA certificates and then visit a site like Google or Canvas?
 
-*(Optional supplementary interactive practice for this section: `../archive/Lab06_CertsPasswords/tools/CertAuthorityTool.html` and `CertLab.html` — built but never deployed as their own lab, still useful here as hands-on reinforcement of the chain-of-trust concept.)*
+*(Optional supplementary interactive practice for this section: [CertAuthorityTool.html](https://uncc-fortress.github.io/itis-6200-f26/archive/Lab06_CertsPasswords/tools/CertAuthorityTool.html) and [CertLab.html](https://uncc-fortress.github.io/itis-6200-f26/archive/Lab06_CertsPasswords/tools/CertLab.html) — built but never deployed as their own lab, still useful here as hands-on reinforcement of the chain-of-trust concept.)*
 
 ## Step 4: The Exponential Wall — Password Salting Simulation (26 points)
 
@@ -58,7 +58,7 @@ Conceptual, referencing Lecture 7's Certificate Authorities content. Scenario: A
 - Q11 (8 pts): a slow hash defends against *offline* attacks — but explain the new vulnerability it creates for *online* attacks. If verifying one password costs the server 0.5 CPU-seconds, how could an attacker weaponize that to crash the login portal?
 - Q12 (8 pts): why do attackers use GPUs rather than CPUs for password cracking specifically? How does salting reduce a GPU cracking rig's efficiency?
 
-*(Optional supplementary interactive practice: `../archive/Lab06_CertsPasswords/tools/CrackLab.html` and `HashCracker.html`.)*
+*(Optional supplementary interactive practice: [CrackLab.html](https://uncc-fortress.github.io/itis-6200-f26/archive/Lab06_CertsPasswords/tools/CrackLab.html) and [HashCracker.html](https://uncc-fortress.github.io/itis-6200-f26/archive/Lab06_CertsPasswords/tools/HashCracker.html).)*
 
 ## References & Further Reading
 
