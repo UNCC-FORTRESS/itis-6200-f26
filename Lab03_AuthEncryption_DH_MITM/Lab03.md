@@ -6,7 +6,7 @@ Total: 100 points (Part 1: 45, Part 2: 40, Part 3: 15).
 
 ## Part 1: Authenticated Encryption Analysis (45 points)
 
-Alice wants to send Bob a message providing both **confidentiality** and **integrity**. Using **[CyberChef](https://cyberchef.io)**, evaluate each of 9 candidate schemes using your own personalized parameters (below), and determine which scheme(s) actually deliver both properties.
+Alice wants to send Bob a message providing both **confidentiality** and **integrity**. Using **[CyberChef](https://uncc-fortress.github.io/CyberChef/)** (backup: [gchq.github.io/CyberChef](https://gchq.github.io/CyberChef/)), evaluate each of 9 candidate schemes using your own personalized parameters (below), and determine which scheme(s) actually deliver both properties.
 
 **Your personalized parameters:**
 - `M` = "[Your Name] does not know which one is Diffie and which is Hellman"
