@@ -45,7 +45,7 @@
 
 ### **Part 5: References & Further Reading**
 
-1.  **Computerphile:** [Vigenère Cipher Explained]https://www.youtube.com/watch?v=SkJcmCaHqS0)
+1.  **Computerphile:** [Vigenère Cipher Explained](https://www.youtube.com/watch?v=SkJcmCaHqS0)
     *   *Visual guide to the polyalphabetic square.*
 2.  **History:** [The Indecipherable Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
     *   *Why Vigenère stood related for 300 years until Kasiski broke it.*
