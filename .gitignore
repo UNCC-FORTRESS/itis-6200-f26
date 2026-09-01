@@ -1,3 +1,4 @@
 base.txt
 .obsidian/
 .DS_Store
+__pycache__/

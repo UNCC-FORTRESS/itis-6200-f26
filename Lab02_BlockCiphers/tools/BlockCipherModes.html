@@ -189,7 +189,8 @@
             <label>Mode:</label>
             <select id="errMode">
                 <option value="ECB">ECB</option>
-                <option value="CBC">CBC (Cipher Block Chaining)</option>
+                <option value="CBC">CBC (Self-Synchronizing)</option>
+                <option value="PCBC">PCBC (Propagating CBC)</option>
                 <option value="CTR">CTR</option>
             </select>
             <button onclick="runErrorEncrypt()">Encrypt</button>
@@ -258,6 +259,7 @@
     // --- CRYPTO PRIMITIVES (SIMULATION) ---
     // Deterministic S-Box for non-linear substitution
     const SBOX = new Uint8Array(256);
+    const SBOX_INV = new Uint8Array(256); // inverse permutation -- needed to actually decrypt, not just fake it
     function initSBox() {
         for(let i=0; i<256; i++) SBOX[i] = i;
         // Fisher-Yates Shuffle with a fixed seed for consistency
@@ -270,6 +272,7 @@
             const j = Math.floor(random() * (i + 1));
             [SBOX[i], SBOX[j]] = [SBOX[j], SBOX[i]];
         }
+        for(let i=0; i<256; i++) SBOX_INV[SBOX[i]] = i;
     }
     initSBox();
 
@@ -359,20 +362,26 @@
         
         // Sim Encryption
         errCipherBytes = [];
-        let iv = 0xAA;
-        let prevP = 0x00; // For PCBC
-        
+        const IV = 0xAA;
+        let prevC = IV;
+        let prevP = 0x00; // Only used by PCBC
+
         for(let i=0; i<errOriginalBytes.length; i++) {
             let p = errOriginalBytes[i];
             let c = 0;
-            
+
             if(mode === 'ECB') {
-                c = (p + 50) % 256; 
+                // ECB: C_i = Enc(P_i) -- every byte independent, no chaining at all
+                c = SBOX[p];
             } else if (mode === 'CBC') {
-                // PCBC Logic: C_i = Enc( P_i ^ IV_or_PrevC ^ PrevP )
-                c = ((p ^ iv ^ prevP) + 50) % 256;
-                iv = c; // Next IV is current C
-                prevP = p; // Next PrevP is current P
+                // CBC: C_i = Enc(P_i ^ C_{i-1}) -- chains ciphertext only
+                c = SBOX[p ^ prevC];
+                prevC = c;
+            } else if (mode === 'PCBC') {
+                // PCBC: C_i = Enc(P_i ^ C_{i-1} ^ P_{i-1}) -- chains ciphertext AND plaintext
+                c = SBOX[p ^ prevC ^ prevP];
+                prevC = c;
+                prevP = p;
             } else { // CTR
                 let ks = (i * 17 + 23) % 256;
                 c = p ^ ks;
@@ -411,45 +420,37 @@
     function runErrorDecrypt() {
         const mode = document.getElementById('errMode').value;
         let res = "";
-        
-        // State for PCBC
+        const IV = 0xAA;
+
+        // State for PCBC -- the receiver's own (possibly already-wrong) decrypted output
+        // feeds forward into the next byte, which is exactly what makes PCBC corruption
+        // propagate forever instead of resynchronizing like plain CBC does.
         let prevP = 0x00;
-        
+
         for(let i=0; i<errCipherBytes.length; i++) {
             let c = errCipherBytes[i];
-            let p = 0;
-            
-            // Check if this byte was modified (simulating block corruption)
-            let isModified = (c !== getOriginalCipherByte(i)); 
+            let p;
 
             if(mode === 'ECB') {
-                if(isModified) {
-                    p = Math.floor(Math.random() * 94) + 33; 
-                } else {
-                    p = (c - 50 + 256) % 256;
-                }
+                // ECB: P_i = Dec(C_i) -- corrupting C_k only ever breaks P_k
+                p = SBOX_INV[c];
             } else if (mode === 'CBC') {
-                // PCBC Logic: P[i] = Dec(C[i]) ^ C[i-1] ^ P[i-1]
-                let decVal;
-                if(isModified) {
-                    decVal = Math.floor(Math.random() * 256);
-                } else {
-                    decVal = (c - 50 + 256) % 256;
-                }
-                
-                let prevC = (i === 0) ? 0xAA : errCipherBytes[i-1];
-                p = decVal ^ prevC ^ prevP;
-                
-                prevP = p; // Update for next round (Crucial for infinite propagation)
-
+                // CBC: P_i = Dec(C_i) ^ C_{i-1} -- uses the ACTUAL (possibly tampered)
+                // previous ciphertext byte off the channel, not the original.
+                const prevC = (i === 0) ? IV : errCipherBytes[i - 1];
+                p = SBOX_INV[c] ^ prevC;
+            } else if (mode === 'PCBC') {
+                const prevC = (i === 0) ? IV : errCipherBytes[i - 1];
+                p = SBOX_INV[c] ^ prevC ^ prevP;
+                prevP = p; // Crucial for infinite propagation
             } else { // CTR
                 let ks = (i * 17 + 23) % 256;
                 p = c ^ ks;
             }
-            
+
             res += (p >= 32 && p <= 126) ? String.fromCharCode(p) : "?";
         }
-        
+
         document.getElementById('errPlainDisplay').innerText = res;
     }
 
