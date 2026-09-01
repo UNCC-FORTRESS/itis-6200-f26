@@ -99,22 +99,24 @@ class BLP:
         obj = self.objects[object_id]
 
         subj_curr_num = self.SECURITY_LEVELS[subj['current_level']]
-        subj_max_num = self.SECURITY_LEVELS[subj['max_level']]
         obj_lvl_num = self.SECURITY_LEVELS[obj['level']]
 
         print(f"> Action: {subject_id} READ {object_id}...")
 
+        # Simple Security Property ("no read up"): a subject may read an object
+        # only at or below their CURRENT level -- not their max clearance. A
+        # subject who needs to read something above their current level must
+        # explicitly raise it first via set_level() (see Case 15), which is
+        # itself bounded by max_level. Auto-promoting current_level here on a
+        # successful max-level check would let any read up to the clearance
+        # ceiling succeed with no explicit action -- exactly what "current"
+        # vs. "max" level exists to distinguish, and what this property exists
+        # to prevent.
         if obj_lvl_num <= subj_curr_num:
             print(f"> ALLOW: Obj Lvl ({obj['level']}) <= Subj Curr ({subj['current_level']}).")
             return True
-            
-        if obj_lvl_num <= subj_max_num:
-            print(f"> ALLOW: Obj Lvl ({obj['level']}) <= Subj Max ({subj['max_level']}).")
-            print(f"> INFO: Raising {subject_id}'s current level to {obj['level']}.")
-            self.subjects[subject_id]['current_level'] = obj['level']
-            return True
 
-        print(f"> DENY: No Read Up! Obj Lvl ({obj['level']}) > Subj Max ({subj['max_level']}).")
+        print(f"> DENY: No Read Up! Obj Lvl ({obj['level']}) > Subj Curr ({subj['current_level']}).")
         return False
 
     # Function to allow or deny a subject read access to an object
