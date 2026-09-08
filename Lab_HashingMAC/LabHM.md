@@ -2,14 +2,26 @@
 
 **Total: 100 points** (Part 0: 8, Part 1: 18, Part 2: 16, Part 3: 34, Part 4: 24).
 
+**Point-value rubric:** [`Lab_HashingMAC/LabHM_Rubric.md`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/LabHM_Rubric.md) — every item and what it's graded on, published up front.
+
 **Topic:** Cryptographic hash functions and their security properties (preimage / second-preimage / collision resistance, the avalanche effect), and how those properties are — and are *not* — enough to build a secure message-authentication code. You will break a naive MAC with a length-extension forgery, fix it with HMAC, verify the fix independently in CyberChef, then look at why password storage needs the *opposite* of a fast hash.
 
 **Tools required:**
 - **[CyberChef](https://uncc-fortress.github.io/CyberChef/)** (backup: [gchq.github.io/CyberChef](https://gchq.github.io/CyberChef/)) — Parts 1, 2, 3 (cross-check), 4. Operations used: **MD5**, **SHA1**, **SHA2**, **SHA3**, **HMAC**, **From Hex**, **XOR**, **PBKDF2**, **Bcrypt**.
-- **Python 3.8+** — Parts 3 and 4. **Standard library only, no `pip install`.** Scripts are in `tools/`:
-  - `tools/sha256_lenext.py` — pure-Python SHA-256 + length-extension forger + a vulnerable/HMAC demo server.
-  - `tools/password_kdf_bench.py` — salted vs. unsalted hashing and a KDF work-factor timing table.
-  - `tools/md5_collision_blocks.txt` — the colliding input pair for Part 2.
+- **Python 3.8+** — Parts 2, 3, and 4. **Standard library only, no `pip install`.**
+
+**Get the scripts.** They live in this lab's `tools/` folder — browse it at
+<https://github.com/UNCC-FORTRESS/itis-6200-f26/tree/main/Lab_HashingMAC/tools>. Download all three into your working directory:
+
+```
+curl -O https://raw.githubusercontent.com/UNCC-FORTRESS/itis-6200-f26/main/Lab_HashingMAC/tools/sha256_lenext.py
+curl -O https://raw.githubusercontent.com/UNCC-FORTRESS/itis-6200-f26/main/Lab_HashingMAC/tools/password_kdf_bench.py
+curl -O https://raw.githubusercontent.com/UNCC-FORTRESS/itis-6200-f26/main/Lab_HashingMAC/tools/md5_collision_blocks.txt
+```
+
+- [`sha256_lenext.py`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/sha256_lenext.py) — pure-Python SHA-256 + length-extension forger + a vulnerable/HMAC demo server (Part 3).
+- [`password_kdf_bench.py`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/password_kdf_bench.py) — salted vs. unsalted hashing and a KDF work-factor timing table (Part 4).
+- [`md5_collision_blocks.txt`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/md5_collision_blocks.txt) — the colliding input pair for Part 2.
 
 As in Lab 03, you **may** re-implement any script in another language/toolchain, but your console screenshots must show the same scenarios.
 
@@ -63,11 +75,11 @@ Derive and record these once, at the top of your report:
 
 ## Part 2: Collisions — Why MD5 and SHA-1 Are Dead — 16 points
 
-**Context.** Collision resistance is the first property to fall. `tools/md5_collision_blocks.txt` contains two 128-byte inputs, **A** and **B**, first published by Wang et al. They are different byte strings that hash to the *same* MD5 digest.
+**Context.** Collision resistance is the first property to fall. [`md5_collision_blocks.txt`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/md5_collision_blocks.txt) contains two 128-byte inputs, **A** and **B**, first published by Wang et al. They are different byte strings that hash to the *same* MD5 digest.
 
 ### Steps
 
-1. Open `tools/md5_collision_blocks.txt`. Copy block **A**'s hex line.
+1. Open [`md5_collision_blocks.txt`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/md5_collision_blocks.txt). Copy block **A**'s hex line.
 2. CyberChef: **From Hex** → **MD5**. Record the digest. Repeat for block **B**. They should match — you should get `79054025255fb1a26e4bc422aef54eb4`.
 3. Confirm A ≠ B: diff the two hex strings (CyberChef "Diff", or eyeball — only 6 bytes changed).
 4. Run both blocks through **SHA2-256**. Record both digests.
@@ -106,10 +118,10 @@ Your goal: produce a **different** message ending in `&role=admin` **with a vali
 
 ### Steps
 
-1. Read `tools/sha256_lenext.py` top to bottom. It contains a pure-Python SHA-256 (asserted equal to `hashlib` at startup), the `sha256_extend()` length-extension primitive, a `Server` holding a random unknown `secret`, and an `attack()` routine that brute-forces `len(secret)` and forges the request.
-2. Run: `python3 tools/sha256_lenext.py --first <FIRST>`
+1. Read [`sha256_lenext.py`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/sha256_lenext.py) top to bottom. It contains a pure-Python SHA-256 (asserted equal to `hashlib` at startup), the `sha256_extend()` length-extension primitive, a `Server` holding a random unknown `secret`, and an `attack()` routine that brute-forces `len(secret)` and forges the request.
+2. Run: `python3 sha256_lenext.py --first <FIRST>`
    - It prints and verifies the legitimate guest token, then forges `...&role=admin` and shows the server **accepting** it — including the recovered secret length and the raw glue-padding bytes now sitting inside the message.
-3. Run the fixed version: `python3 tools/sha256_lenext.py --first <FIRST> --hmac`
+3. Run the fixed version: `python3 sha256_lenext.py --first <FIRST> --hmac`
    - Same attack against `tag = HMAC-SHA256(secret, message)`. The forgery **fails**. The script also prints the (normally hidden) secret in hex, labelled for your CyberChef cross-check.
 4. **CyberChef cross-check.** From the `--hmac` run, take the revealed `secret` hex and the legit `message`. CyberChef → **HMAC**, hashing function **SHA256**, **key type: Hex**, key = the revealed secret, input = the message. Confirm the tag matches the script's `legit tag`. (Point: the "fix" is just a standard construction you can compute in any tool — nothing exotic.)
 
@@ -133,12 +145,12 @@ Your goal: produce a **different** message ending in `&role=admin` **with a vali
 
 ## Part 4: Password Hashing & Key-Derivation Functions — 24 points
 
-**Context.** Password storage is a hashing problem where the "obvious" choice (`SHA256(password)`) is wrong for the *opposite* reason MD5 is wrong: SHA-256 is **too fast**. `tools/password_kdf_bench.py` demonstrates salting and work factors; CyberChef's **Bcrypt** operation shows a purpose-built password hash.
+**Context.** Password storage is a hashing problem where the "obvious" choice (`SHA256(password)`) is wrong for the *opposite* reason MD5 is wrong: SHA-256 is **too fast**. [`password_kdf_bench.py`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/password_kdf_bench.py) demonstrates salting and work factors; CyberChef's **Bcrypt** operation shows a purpose-built password hash.
 
 ### Steps
 
-1. Read `tools/password_kdf_bench.py`.
-2. Run: `python3 tools/password_kdf_bench.py --passphrase "<PASS>"`
+1. Read [`password_kdf_bench.py`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/tools/password_kdf_bench.py).
+2. Run: `python3 password_kdf_bench.py --passphrase "<PASS>"`
 
    It prints:
    - `SHA256(PASS)` with **no salt** (deterministic — identical for every user with this password),
@@ -165,7 +177,7 @@ Your goal: produce a **different** message ending in `&role=admin` **with a vali
 
 ## References & Further Reading
 
-Lab-wise, if you face any difficulties with setup, tool usage, or markup, reach out to the TAs during office hours or by email. Assessments and deductions are at TA discretion but follow the rubric for fairness and consistency. Raise any grading concerns within three days of receiving your points.
+Lab-wise, if you face any difficulties with setup, tool usage, or markup, reach out to the TAs during office hours or by email. Assessments and deductions are at TA discretion but follow the [rubric](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/Lab_HashingMAC/LabHM_Rubric.md) for fairness and consistency. Raise any grading concerns within three days of receiving your points.
 
 These cover the *concepts*; none walk through this lab's specific parameters or give you the answers.
 
@@ -177,4 +189,4 @@ These cover the *concepts*; none walk through this lab's specific parameters or 
 
 ## AI Appendix & submission format
 
-Follow `../guidelines.txt` (screenshot markup, `FirstName_LastName_LabHM.docx` naming, AI-use disclosure). Not restated here. The missing-screenshot cap in `../SCREENSHOT_PENALTY_POLICY.md` applies on top of the rubric.
+Follow [`guidelines.txt`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/guidelines.txt) (screenshot markup, `FirstName_LastName_LabHM.docx` naming, AI-use disclosure). Not restated here. The missing-screenshot cap in [`SCREENSHOT_PENALTY_POLICY.md`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/SCREENSHOT_PENALTY_POLICY.md) applies on top of the rubric.

@@ -1,10 +1,10 @@
 # Lab: Hashing & MAC — Grading Rubric
 
-**Total: 100 points** (Part 0: 8, Part 1: 18, Part 2: 16, Part 3: 34, Part 4: 24). See `../SCREENSHOT_PENALTY_POLICY.md` for the missing-screenshot cap, applied **on top of** this breakdown. **Penalty: −20 points** for generic/example values instead of SIP-derived ones, duplicate screenshots, or tampered evidence.
+**Total: 100 points** (Part 0: 8, Part 1: 18, Part 2: 16, Part 3: 34, Part 4: 24). See [`SCREENSHOT_PENALTY_POLICY.md`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/SCREENSHOT_PENALTY_POLICY.md) for the missing-screenshot cap, applied **on top of** this breakdown. **Penalty: −20 points** for generic/example values instead of SIP-derived ones, duplicate screenshots, or tampered evidence.
 
 This rubric gives you the exact point value of every item and *what* each item is assessed on. It does not contain the answers, expected numbers, or worked calculations — those live in the private grading key the TAs use. Every `Q#` is graded on the correctness of the underlying reasoning, not just a correct final number or the right one-word outcome: an answer that states the right result without explaining the mechanism gets at most half of that item.
 
-**Maps to `../basicGradingRubric.md`:** the SIP part + every screenshot line roll up into the 40-pt *Format* band; "did the deliverable appear at all" into the 30-pt *Completion* band; every `Q#` into the 30-pt *Analysis* band.
+**Maps to [`basicGradingRubric.md`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/basicGradingRubric.md):** the SIP part + every screenshot line roll up into the 40-pt *Format* band; "did the deliverable appear at all" into the 30-pt *Completion* band; every `Q#` into the 30-pt *Analysis* band.
 
 ---
 
@@ -83,8 +83,8 @@ This rubric gives you the exact point value of every item and *what* each item i
 
 | Item | Effect |
 |---|---|
-| Missing required screenshot(s) | max-score cap per `../SCREENSHOT_PENALTY_POLICY.md` |
+| Missing required screenshot(s) | max-score cap per [`SCREENSHOT_PENALTY_POLICY.md`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/SCREENSHOT_PENALTY_POLICY.md) |
 | Generic / example values instead of SIP | −20, and Part 0 → 0 |
 | Duplicate or tampered screenshot | −20 |
-| Late | −20 per 24h, no submission after 48h (`../basicGradingRubric.md`) |
-| Cannot explain own submission when asked | integrity referral per `../guidelines.txt` |
+| Late | −20 per 24h, no submission after 48h ([`basicGradingRubric.md`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/basicGradingRubric.md)) |
+| Cannot explain own submission when asked | integrity referral per [`guidelines.txt`](https://github.com/UNCC-FORTRESS/itis-6200-f26/blob/main/guidelines.txt) |
